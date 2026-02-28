@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Leads Honda</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        honda: {
+                            red: '#E4002B',
+                            dark: '#111827',
+                            gray: '#F3F4F6',
+                            light: '#FFF0F2'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Kustomisasi Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #E4002B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b30022; }
+        
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Animasi Loading */
+        .spinner {
+            border: 3px solid rgba(228, 0, 43, 0.1);
+            border-left-color: #E4002B;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-honda-red selection:text-white overflow-x-hidden">
+
+    <!-- ==================== SKRIN LOG MASUK ==================== -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center bg-honda-dark fixed inset-0 z-50 p-4 relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-honda-red opacity-20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-honda-red opacity-10 rounded-full blur-3xl -ml-24 -mb-24"></div>
+
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full border border-gray-100 relative z-10 fade-in">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-honda-light rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-honda-red"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold text-honda-dark">Log Masuk Admin</h2>
+                <p class="text-sm text-gray-500 mt-1">Sistem Pengurusan Leads Honda</p>
+            </div>
+
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Nama Pengguna (Username)</label>
+                    <div class="relative">
+                        <i data-lucide="user" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                        <input type="text" id="username" required 
+                            class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-gray-900 font-medium">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Kata Laluan (Password)</label>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                        <input type="password" id="password" required 
+                            class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-gray-900 font-medium">
+                    </div>
+                </div>
+                
+                <p id="login-error" class="text-honda-red text-sm font-medium text-center mb-4 hidden">Sila semak semula ID dan Kata Laluan anda.</p>
+
+                <button type="submit" class="w-full bg-honda-red hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg shadow-red-500/30 flex items-center justify-center gap-2">
+                    Log Masuk <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD UTAMA ==================== -->
+    <div id="dashboard-screen" class="hidden min-h-screen flex flex-col">
+        
+        <!-- Navigasi Atas -->
+        <nav class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-20 items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-honda-red text-white p-2 rounded-lg">
+                            <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-lg text-honda-dark leading-tight">Admin Dashboard</h1>
+                            <p class="text-xs text-gray-500">Muiz Nazmi - Honda Sales</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-200 text-gray-700 hover:text-honda-red hover:border-honda-red bg-gray-50 transition">
+                            <i data-lucide="home" class="w-4 h-4"></i>
+                            Halaman Utama
+                        </a>
+                        <button onclick="fetchSheetData()" class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light" title="Muat Semula Data">
+                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="openAccountModal()" class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light" title="Tetapan Akaun Admin">
+                            <i data-lucide="user" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="logout()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-200 transition flex items-center gap-2 border border-gray-200">
+                            <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Kandungan Utama -->
+        <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+            
+            <!-- Kad Statistik -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in" style="animation-delay: 0.1s;">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 mb-1">Jumlah Leads Terkumpul</p>
+                        <h3 id="total-leads" class="text-3xl font-extrabold text-honda-dark">0</h3>
+                    </div>
+                    <div class="w-14 h-14 bg-honda-light rounded-full flex items-center justify-center">
+                        <i data-lucide="users" class="w-7 h-7 text-honda-red"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 mb-1">Jumlah Hari Ini</p>
+                        <h3 id="today-leads" class="text-3xl font-extrabold text-honda-red">0</h3>
+                    </div>
+                    <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="calendar-plus" class="w-7 h-7 text-honda-red"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 mb-1">Kemas Kini Terakhir</p>
+                        <h3 id="last-update" class="text-lg font-bold text-honda-dark">-</h3>
+                    </div>
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="clock" class="w-7 h-7 text-blue-600"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jadual Data -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in" style="animation-delay: 0.2s;">
+                <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <h2 class="text-lg font-bold text-honda-dark flex items-center gap-2">
+                        <i data-lucide="table-2" class="w-5 h-5 text-honda-red"></i> Senarai Prospek Pelanggan
+                    </h2>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                        <!-- Kotak Carian & Butang -->
+                        <div class="flex w-full sm:w-auto gap-2">
+                            <div class="relative w-full sm:w-64">
+                                <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nama atau no. phone..." 
+                                    class="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-sm">
+                            </div>
+                            <button onclick="filterTable()" class="bg-honda-red text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-honda-red flex items-center">
+                                Cari
+                            </button>
+                        </div>
+                        <a href="https://docs.google.com/spreadsheets/d/1Gy_eQup-LzfOngN1_zQhUyEQ2UdFyp_sGcaf1RF5zEU/edit" target="_blank" class="text-sm text-honda-red font-semibold hover:underline flex items-center gap-1 whitespace-nowrap">
+                            Buka Google Sheets <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-50 text-gray-600 text-sm border-b border-gray-200">
+                            <tr id="table-head">
+                                <th class="py-4 px-6 font-semibold whitespace-nowrap">Status</th>
+                                <th class="py-4 px-6 font-semibold whitespace-nowrap">Memuat turun data...</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="text-sm text-gray-700 divide-y divide-gray-100">
+                            <tr>
+                                <td colspan="10" class="py-12 text-center">
+                                    <div class="flex flex-col items-center justify-center gap-3">
+                                        <div class="spinner"></div>
+                                        <p class="text-gray-500 font-medium">Menarik data dari Google Sheets...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </main>
+        
+        <!-- Footer Admin -->
+        <footer class="bg-white border-t border-gray-200 mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-sm text-gray-500">
+                &copy; <span id="current-year"></span> Sistem Admin Leads Honda.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Tetapan Akaun Admin -->
+    <div id="account-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 p-6 relative">
+            <button onclick="closeAccountModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-honda-light flex items-center justify-center">
+                    <i data-lucide="shield-lock" class="w-5 h-5 text-honda-red"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-honda-dark">Tetapan Akaun Admin</h2>
+                    <p class="text-xs text-gray-500">
+                        Username & password disimpan di browser anda (localStorage). Jika cache dibersihkan atau guna device lain, ia akan kembali ke default.
+                    </p>
+                </div>
+            </div>
+            <form id="credentials-form" onsubmit="changeCredentials(event)" class="space-y-4 mt-2">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Username Baharu</label>
+                    <input type="text" id="new-username"
+                        placeholder="Biarkan kosong jika kekal sama"
+                        class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Password Lama</label>
+                    <input type="password" id="old-password" required
+                        class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Password Baharu</label>
+                    <input type="password" id="new-password" required
+                        class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red text-sm">
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
+                    <button type="submit"
+                        class="inline-flex items-center justify-center px-5 py-2.5 bg-honda-red text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition shadow-sm">
+                        Simpan Perubahan
+                    </button>
+                    <p id="credentials-status" class="text-xs text-gray-500"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Inisialisasi ikon
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- KONFIGURASI KESELAMATAN & DATA ---
+        const DEFAULT_ADMIN_USER = "admin";
+        const DEFAULT_ADMIN_PASS = "admin123";
+
+        let currentAdminUser;
+        let currentAdminPass;
+
+        function loadCredentials() {
+            try {
+                const storedUser = localStorage.getItem("hondaAdminUser");
+                const storedPass = localStorage.getItem("hondaAdminPass");
+                currentAdminUser = storedUser || DEFAULT_ADMIN_USER;
+                currentAdminPass = storedPass || DEFAULT_ADMIN_PASS;
+            } catch (e) {
+                // Jika localStorage tidak tersedia, guna default
+                currentAdminUser = DEFAULT_ADMIN_USER;
+                currentAdminPass = DEFAULT_ADMIN_PASS;
+            }
+        }
+
+        loadCredentials();
+        
+        // URL Google Sheets Published (Ditukar format hujungnya kepada csv untuk tarik data mudah)
+        // Link asal: https://docs.google.com/spreadsheets/d/e/2PACX-1vSY8b-yIjFG3WNM3zGnZX3vNsy7WiWRtt7sIl5LSdwjR4wjHNZoe9JDJ9R91RNu-uhS8W0Gb40kovjg/pubhtml
+        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSY8b-yIjFG3WNM3zGnZX3vNsy7WiWRtt7sIl5LSdwjR4wjHNZoe9JDJ9R91RNu-uhS8W0Gb40kovjg/pub?output=csv";
+
+        // --- FUNGSI LOG MASUK ---
+        function handleLogin(event) {
+            event.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            if (user === currentAdminUser && pass === currentAdminPass) {
+                // Berjaya
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('dashboard-screen').classList.remove('hidden');
+                
+                // Mula tarik data sebaik sahaja login berjaya
+                fetchSheetData();
+            } else {
+                // Gagal
+                errorMsg.classList.remove('hidden');
+                // Goncang form sedikit (efek visual)
+                const formBox = errorMsg.parentElement.parentElement;
+                formBox.style.transform = "translateX(10px)";
+                setTimeout(() => formBox.style.transform = "translateX(-10px)", 100);
+                setTimeout(() => formBox.style.transform = "translateX(0)", 200);
+            }
+        }
+
+        function logout() {
+            document.getElementById('username').value = "";
+            document.getElementById('password').value = "";
+            document.getElementById('login-error').classList.add('hidden');
+            
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+        }
+
+        // --- MODAL TETAPAN AKAUN ---
+        function openAccountModal() {
+            const modal = document.getElementById('account-modal');
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            const statusEl = document.getElementById('credentials-status');
+            if (statusEl) {
+                statusEl.textContent = "";
+                statusEl.className = "text-xs text-gray-500";
+            }
+        }
+
+        function closeAccountModal() {
+            const modal = document.getElementById('account-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // --- FUNGSI TUKAR USERNAME / PASSWORD ---
+        function changeCredentials(event) {
+            event.preventDefault();
+
+            const newUsernameInput = document.getElementById('new-username');
+            const oldPasswordInput = document.getElementById('old-password');
+            const newPasswordInput = document.getElementById('new-password');
+            const statusEl = document.getElementById('credentials-status');
+
+            const oldPass = oldPasswordInput.value.trim();
+            const newUser = newUsernameInput.value.trim();
+            const newPass = newPasswordInput.value.trim();
+
+            statusEl.classList.remove('text-red-500', 'text-green-500');
+            statusEl.classList.add('text-gray-500');
+            statusEl.textContent = "Menyemak maklumat...";
+
+            if (!oldPass || !newPass) {
+                statusEl.classList.remove('text-gray-500');
+                statusEl.classList.add('text-red-500');
+                statusEl.textContent = "Sila isi password lama dan password baharu.";
+                return;
+            }
+
+            if (oldPass !== currentAdminPass) {
+                statusEl.classList.remove('text-gray-500');
+                statusEl.classList.add('text-red-500');
+                statusEl.textContent = "Password lama tidak tepat.";
+                return;
+            }
+
+            try {
+                if (newUser) {
+                    localStorage.setItem("hondaAdminUser", newUser);
+                    currentAdminUser = newUser;
+                }
+                localStorage.setItem("hondaAdminPass", newPass);
+                currentAdminPass = newPass;
+
+                statusEl.classList.remove('text-gray-500');
+                statusEl.classList.add('text-green-500');
+                statusEl.textContent = "Berjaya! Username/password telah dikemas kini. Sila ingat maklumat baharu anda.";
+
+                oldPasswordInput.value = "";
+                newPasswordInput.value = "";
+                // Username baharu dibiarkan supaya admin nampak apa yang telah ditetapkan
+            } catch (e) {
+                console.error(e);
+                statusEl.classList.remove('text-gray-500');
+                statusEl.classList.add('text-red-500');
+                statusEl.textContent = "Ralat: browser tidak membenarkan simpan tetapan. Sila cuba browser lain.";
+            }
+        }
+
+        // --- FUNGSI TARIK DATA (CSV PARSER) ---
+        // Fungsi untuk parse CSV string menjadi Array
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            for (let row = 0, col = 0, c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        async function fetchSheetData() {
+            const thead = document.getElementById('table-head');
+            const tbody = document.getElementById('table-body');
+            const totalText = document.getElementById('total-leads');
+            const timeText = document.getElementById('last-update');
+            const todayText = document.getElementById('today-leads');
+
+            // Tunjuk loading
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="10" class="py-12 text-center">
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <div class="spinner"></div>
+                            <p class="text-gray-500 font-medium">Menarik data terbaru...</p>
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            try {
+                // Fetch data format CSV
+                const response = await fetch(CSV_URL, { cache: "no-store" });
+                
+                if (!response.ok) throw new Error("Gagal akses data dari Google Sheets");
+                
+                const csvText = await response.text();
+                const dataArray = parseCSV(csvText);
+
+                if (dataArray.length <= 1) {
+                    tbody.innerHTML = `<tr><td colspan="10" class="py-8 text-center text-gray-500">Tiada data dijumpai di dalam rekod.</td></tr>`;
+                    totalText.textContent = "0";
+                    return;
+                }
+
+                // Baris pertama adalah Header
+                const headers = dataArray[0];
+                const rows = dataArray.slice(1);
+
+                // Kemaskini Header Jadual
+                let headerHTML = `<th class="py-4 px-6 font-semibold whitespace-nowrap w-16 text-center">#</th>`;
+                headers.forEach(head => {
+                    headerHTML += `<th class="py-4 px-6 font-semibold whitespace-nowrap">${head.trim()}</th>`;
+                });
+                thead.innerHTML = headerHTML;
+
+                // Dapatkan tarikh hari ini
+                const currentDate = new Date();
+                const currentYear = currentDate.getFullYear();
+                const currentMonth = currentDate.getMonth();
+                const currentDay = currentDate.getDate();
+                let todayLeadsCount = 0;
+
+                // Kemaskini Isi Jadual (Terbalikkan data supaya yang paling baru di atas)
+                rows.reverse();
+                let bodyHTML = "";
+                let count = rows.length;
+                
+                rows.forEach((row, index) => {
+                    // Semak jika baris kosong sepenuhnya
+                    if (row.join('').trim() === '') return;
+
+                    // Semak dan kira jumlah leads untuk hari ini
+                    try {
+                        const rowDateStr = row[0].replace(/['"]/g, '').trim();
+                        const rowDate = new Date(rowDateStr);
+                        if (!isNaN(rowDate.getTime())) {
+                            if (rowDate.getFullYear() === currentYear && 
+                                rowDate.getMonth() === currentMonth && 
+                                rowDate.getDate() === currentDay) {
+                                todayLeadsCount++;
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Ralat baca tarikh", e);
+                    }
+
+                    bodyHTML += `<tr class="hover:bg-honda-light transition group">`;
+                    bodyHTML += `<td class="py-3 px-6 border-b border-gray-100 text-center text-gray-400 font-medium">${count - index}</td>`;
+                    
+                    row.forEach((col, colIndex) => {
+                        let text = col.trim();
+                        // Bersihkan simbol "'" (single quote) yang digunakan untuk paksa format teks di g-sheets
+                        if (text.startsWith("'")) text = text.substring(1);
+
+                        // Kemasan visual untuk column tertentu
+                        if (text.toLowerCase().includes('honda')) {
+                            bodyHTML += `<td class="py-3 px-6 border-b border-gray-100 font-semibold text-honda-dark">${text}</td>`;
+                        } else {
+                            bodyHTML += `<td class="py-3 px-6 border-b border-gray-100">${text}</td>`;
+                        }
+                    });
+
+                    bodyHTML += `</tr>`;
+                });
+
+                tbody.innerHTML = bodyHTML;
+                lucide.createIcons();
+
+                // Kemaskini Statistik
+                totalText.textContent = rows.length;
+                if(todayText) todayText.textContent = todayLeadsCount;
+                
+                const now = new Date();
+                timeText.textContent = now.getHours().toString().padStart(2, '0') + ":" + 
+                                       now.getMinutes().toString().padStart(2, '0') + 
+                                       (now.getHours() >= 12 ? " PM" : " AM");
+
+            } catch (error) {
+                console.error("Ralat memuat turun:", error);
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="py-8 text-center text-red-500 bg-red-50">
+                            <div class="flex flex-col items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-8 h-8"></i>
+                                <span class="font-bold">Gagal memuat turun data.</span>
+                                <span class="text-xs">Sila pastikan link Google Sheets telah di 'Publish to Web'.</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        // --- FUNGSI CARIAN (SEARCH) ---
+        function filterTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toLowerCase();
+            const tbody = document.getElementById("table-body");
+            const trs = tbody.getElementsByTagName("tr");
+
+            for (let i = 0; i < trs.length; i++) {
+                const tds = trs[i].getElementsByTagName("td");
+                
+                // Pastikan bukan baris 'loading' atau 'tiada data' (biasanya kurang 3 kolum)
+                if (tds.length < 3) continue;
+
+                const tdNama = tds[2];   // Kolum index 2 (Nama Penuh)
+                const tdPhone = tds[3];  // Kolum index 3 (No Telefon)
+
+                if (tdNama || tdPhone) {
+                    const txtNama = tdNama.textContent || tdNama.innerText;
+                    const txtPhone = tdPhone.textContent || tdPhone.innerText;
+                    
+                    // Semak jika kata kunci carian ada dalam Nama ATAU No Telefon
+                    if (txtNama.toLowerCase().indexOf(filter) > -1 || txtPhone.toLowerCase().indexOf(filter) > -1) {
+                        trs[i].style.display = "";
+                    } else {
+                        trs[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
