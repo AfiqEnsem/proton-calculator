@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proton Malaysia - Laman Utama Agensi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Navbar Asas -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
+                        P
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg text-gray-900 leading-tight">Agensi Proton</h1>
+                        <p class="text-xs text-gray-500">Pusat Jualan Rasmi</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="admin.html"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition">Admin
+                        Panel</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+        class="bg-blue-600 text-white py-20 px-4 mt-8 mx-4 sm:mx-8 rounded-3xl text-center relative overflow-hidden shadow-xl">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Miliki Kenderaan Nasional Anda Hari Ini</h2>
+            <p class="text-lg text-blue-100 mb-8">Pilih dari rangkaian model terbaru kami yang direka untuk keselesaan
+                dan prestasi. Hubungi penasihat jualan berdaftar kami melalui profil rasmi mereka.</p>
+            <a href="#senarai-model"
+                class="bg-white text-blue-600 px-8 py-3.5 rounded-full font-bold text-lg hover:bg-gray-100 transition inline-block">Linhat
+                Senarai Model</a>
+        </div>
+    </section>
+
+    <!-- Simple Grid / Senarai Ejen (Boleh diubah suai kemudian) -->
+    <section id="senarai-model" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Model Pilihan Ramai</h3>
+                <p class="text-gray-600">Model-model terkini Proton menanti anda.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Kad Kenderaan 1 -->
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                    <img src="https://v1.proton.com/themes/proton/assets/img/cars/sg22/mc2/sg22.png" alt="Proton Saga"
+                        class="w-full h-40 object-contain mb-4 filter drop-shadow-md">
+                    <h4 class="font-bold text-xl text-gray-900">Proton Saga</h4>
+                    <p class="text-gray-500 mb-4 text-sm">Keselesaan harian untuk semua</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Butiran Lanjut &rarr;</a>
+                </div>
+
+                <!-- Kad Kenderaan 2 -->
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                    <img src="https://v1.proton.com/themes/proton/assets/img/cars/x50-2024/exterior/color-ocean-blue.webp"
+                        alt="Proton X50" class="w-full h-40 object-contain mb-4 filter drop-shadow-md">
+                    <h4 class="font-bold text-xl text-gray-900">Proton X50</h4>
+                    <p class="text-gray-500 mb-4 text-sm">SUV Kompak yang Pintar</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Butiran Lanjut &rarr;</a>
+                </div>
+
+                <!-- Kad Kenderaan 3 -->
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                    <img src="https://v1.proton.com/themes/proton/assets/img/cars/s70/s70-teal.png" alt="Proton S70"
+                        class="w-full h-40 object-contain mb-4 filter drop-shadow-md">
+                    <h4 class="font-bold text-xl text-gray-900">Proton S70</h4>
+                    <p class="text-gray-500 mb-4 text-sm">Prestasi Sedan Era Baharu</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Butiran Lanjut &rarr;</a>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center p-8 bg-blue-50 rounded-2xl border border-blue-100">
+                <i data-lucide="info" class="w-10 h-10 text-blue-500 mx-auto mb-4"></i>
+                <h4 class="font-bold text-gray-900 text-lg mb-2">Peringatan Untuk Admin</h4>
+                <p class="text-gray-600 mb-4 text-sm max-w-2xl mx-auto">Ini adalah halaman utama asas yang baru. Anda
+                    boleh mengubah HTML fail ini sesuka hati anda. Halaman profil kalkulator Ejen Jualan telah
+                    disatukan di sistem utama dan boleh diakses menggunakan parameter seperti <code
+                        class="bg-gray-200 px-2 py-1 rounded text-red-600 font-mono text-xs">/?sa=nama</code>.</p>
+                <a href="?sa=1"
+                    class="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">Lihat
+                    Contoh Portfolio SA1 <i data-lucide="external-link" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; <span id="year"></span> Agensi Proton Malaysia. Hak Cipta Terpelihara.</p>
+            <p class="mt-2 text-xs">Halaman pendaratan korporat asas.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

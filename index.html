@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -32,25 +34,98 @@
     </script>
     <style>
         /* Kustomisasi Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #E4002B; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #b30022; }
-        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #E4002B;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b30022;
+        }
+
         /* Gaya Kustom Kalkulator */
-        .calculator-shadow { box-shadow: 0 25px 50px -12px rgba(228, 0, 43, 0.15); }
-        .input-focus:focus { box-shadow: 0 0 0 3px rgba(228, 0, 43, 0.1); }
-        .cta-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
-        .fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        input[type="range"] { -webkit-appearance: none; height: 8px; border-radius: 4px; background: linear-gradient(to right, #E4002B 0%, #E4002B var(--progress, 0%), #E5E7EB var(--progress, 0%), #E5E7EB 100%); }
-        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #E4002B; cursor: pointer; border: 4px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-        input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: #E4002B; cursor: pointer; border: 4px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .calculator-shadow {
+            box-shadow: 0 25px 50px -12px rgba(228, 0, 43, 0.15);
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(228, 0, 43, 0.1);
+        }
+
+        .cta-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #E4002B 0%, #E4002B var(--progress, 0%), #E5E7EB var(--progress, 0%), #E5E7EB 100%);
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #E4002B;
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #E4002B;
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-honda-red selection:text-white overflow-x-hidden">
+
+<body
+    class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-honda-red selection:text-white overflow-x-hidden">
 
     <!-- Navigasi Utama -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
@@ -58,14 +133,17 @@
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center gap-3">
                     <!-- Logo Ejen -->
-                    <img src="https://i.postimg.cc/0jG4XkzV/new-logo.jpg" alt="Logo Muiz Nazmi" class="w-10 h-10 rounded object-cover border border-gray-100 shadow-sm" onerror="this.src='https://ui-avatars.com/api/?name=Muiz+Nazmi&background=E4002B&color=fff'">
+                    <img id="nav-profile-img" src="" alt="Logo Ejen"
+                        class="w-10 h-10 rounded object-contain border border-gray-100 shadow-sm opacity-0 transition-opacity duration-300 bg-white">
                     <div>
-                        <h1 class="font-bold text-lg text-honda-dark leading-tight">Muiz Nazmi</h1>
-                        <p class="text-xs text-gray-500">Penasihat Jualan Sah Honda</p>
+                        <h1 id="nav-sa-name" class="font-bold text-lg text-gray-900 leading-tight">Memuatkan...</h1>
+                        <p id="nav-sa-brand" class="text-xs text-gray-500">Penasihat Jualan Sah</p>
                     </div>
                 </div>
                 <div>
-                    <a href="#kalkulator" class="bg-honda-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-red-700 transition shadow-md">Kira Pinjaman</a>
+                    <a href="#kalkulator"
+                        class="bg-honda-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-red-700 transition shadow-md">Kira
+                        Pinjaman</a>
                 </div>
             </div>
         </div>
@@ -76,21 +154,31 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="text-center md:text-left order-2 md:order-1">
-                    <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-honda-red text-sm font-semibold mb-4">Promosi Eksklusif 2024</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-honda-dark leading-tight mb-6">Miliki Honda Idaman Anda Hari Ini.</h2>
-                    <p class="text-lg text-gray-600 mb-8">Urusan mudah, telus, dan pantas. Kira anggaran bulanan anda sekarang dan biar saya uruskan selebihnya sehingga kereta sampai ke pintu rumah anda.</p>
+                    <span id="hero-promo"
+                        class="inline-block py-1 px-3 rounded-full bg-red-100 text-honda-red text-sm font-semibold mb-4">Promosi
+                        Eksklusif Ekstra Penjimatan!</span>
+                    <h2 id="hero-title" class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Miliki Kereta
+                        Idaman Anda Hari Ini.</h2>
+                    <p id="hero-subtitle" class="text-lg text-gray-600 mb-8">Urusan mudah, telus, dan pantas. Kira
+                        anggaran bulanan anda
+                        sekarang dan biar saya uruskan selebihnya.</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#kalkulator" class="bg-honda-dark text-white px-8 py-3.5 rounded-md font-bold text-center hover:bg-gray-800 transition flex items-center justify-center gap-2">
+                        <a href="#kalkulator"
+                            class="bg-gray-900 text-white px-8 py-3.5 rounded-md font-bold text-center hover:bg-gray-800 transition flex items-center justify-center gap-2">
                             <i data-lucide="calculator" class="w-5 h-5"></i> Cuba Kalkulator
                         </a>
                     </div>
                 </div>
                 <div class="relative order-1 md:order-2">
-                    <div class="aspect-square bg-gray-100 rounded-2xl overflow-hidden relative shadow-xl max-w-[320px] md:max-w-none mx-auto">
-                        <img src="https://i.postimg.cc/qRLWBBLC/Whats-App-Image-2026-02-23-at-8-36-41-PM.jpg" alt="Ejen Honda Profesional" class="object-cover w-full h-full object-top" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800'">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 md:p-6 text-white text-center md:text-left">
-                            <p class="font-bold text-lg md:text-xl">Muiz Nazmi</p>
-                            <p class="text-xs md:text-sm opacity-90">3 Tahun Pengalaman | Top Sales</p>
+                    <div
+                        class="aspect-square bg-gray-100 rounded-2xl overflow-hidden relative shadow-xl max-w-[320px] md:max-w-none mx-auto">
+                        <img id="hero-img" src="" alt="Ejen Profesional"
+                            class="object-cover w-full h-full object-top opacity-0 transition-opacity duration-300">
+                        <div
+                            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 md:p-6 text-white text-center md:text-left">
+                            <p id="hero-sa-name" class="font-bold text-lg md:text-xl">Memuatkan...</p>
+                            <p class="text-xs md:text-sm opacity-90">Sedia Membantu Anda</p>
                         </div>
                     </div>
                 </div>
@@ -102,123 +190,220 @@
     <section id="kalkulator" class="py-16 sm:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">Kalkulator Pinjaman Kereta</h2>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">Kalkulator Pinjaman
+                    Kereta</h2>
                 <p class="text-gray-600 text-sm sm:text-lg">Pilih model dan sesuaikan mengikut bajet anda</p>
             </div>
-            
+
             <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
-                <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 calculator-shadow border border-gray-100 relative">
+                <div
+                    class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 calculator-shadow border border-gray-100 relative">
                     <div class="mb-6 sm:mb-8 relative z-20">
-                        <label class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Pilih Model Honda</label>
+                        <label id="choose-model-label"
+                            class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Pilih
+                            Model</label>
                         <div id="model-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                             <!-- Model akan diisi melalui JavaScript -->
                         </div>
                     </div>
-                    
+
                     <div class="relative mt-4">
-                        <div id="calc-overlay" class="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-xl transition-opacity duration-300">
-                            <span class="bg-gray-900 text-white text-xs sm:text-sm px-4 py-2 rounded-full font-medium shadow-md flex items-center gap-2">
+                        <div id="calc-overlay"
+                            class="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-xl transition-opacity duration-300">
+                            <span
+                                class="bg-gray-900 text-white text-xs sm:text-sm px-4 py-2 rounded-full font-medium shadow-md flex items-center gap-2">
                                 <i data-lucide="lock" class="w-3.5 h-3.5"></i> Sila pilih model dahulu
                             </span>
                         </div>
-                        
-                        <div id="calc-controls" class="opacity-40 pointer-events-none transition-all duration-300 relative pt-2">
+
+                        <div id="calc-controls"
+                            class="opacity-40 pointer-events-none transition-all duration-300 relative pt-2">
                             <div id="variant-section" class="mb-6 sm:mb-8 hidden">
-                                <label class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Pilih Varian</label> 
-                                <select id="variant-select" class="w-full px-3 py-3 sm:px-4 sm:py-3.5 border-2 border-gray-200 rounded-xl focus:border-honda-red focus:outline-none input-focus text-gray-900 text-sm sm:text-base font-medium bg-white transition-all cursor-pointer"> 
-                                    <option value="">-- Pilih Varian --</option> 
+                                <label
+                                    class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Pilih
+                                    Varian</label>
+                                <select id="variant-select"
+                                    class="w-full px-3 py-3 sm:px-4 sm:py-3.5 border-2 border-gray-200 rounded-xl focus:border-honda-red focus:outline-none input-focus text-gray-900 text-sm sm:text-base font-medium bg-white transition-all cursor-pointer">
+                                    <option value="">-- Pilih Varian --</option>
                                 </select>
                             </div>
-                            
+
                             <div class="mb-6 sm:mb-8">
-                                <div class="flex items-center justify-between mb-2 sm:mb-3">
-                                    <label class="text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wide">Deposit</label> 
-                                    <span id="deposit-display" class="text-honda-red font-bold text-base sm:text-lg">RM 0</span>
+                                <div
+                                    class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-3 gap-2">
+                                    <label
+                                        class="text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wide">Deposit</label>
+                                    <div class="flex items-center justify-end gap-1">
+                                        <span class="text-gray-500 font-semibold text-sm">RM</span>
+                                        <input type="text" id="deposit-custom-input" value="0"
+                                            class="w-24 sm:w-28 text-right bg-gray-50 border-2 border-gray-200 rounded-lg px-2 py-1 focus:border-honda-red focus:bg-white outline-none font-bold text-honda-red text-base sm:text-lg transition-colors"
+                                            inputmode="numeric">
+                                    </div>
                                 </div>
-                                <input type="range" id="deposit-slider" min="0" max="50" value="10" class="w-full cursor-pointer">
-                                <div class="flex justify-between mt-2 text-xs sm:text-sm text-gray-500 font-medium">
-                                    <span>0%</span> 
-                                    <span id="deposit-percent" class="font-bold text-honda-red">10%</span> 
-                                    <span>50%</span>
+                                <input type="range" id="deposit-slider" min="0" max="50" value="10" step="1"
+                                    class="w-full cursor-pointer accent-honda-red relative z-10">
+                                <div class="flex justify-between mt-1 px-1 sm:px-1.5 relative">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">0%</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">10%</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">20%</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">30%</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">40%</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-1.5 bg-gray-400 mt-0.5 mb-1 rounded-full"></div>
+                                        <span class="text-[10px] sm:text-xs text-gray-400 font-medium">50%</span>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <span id="deposit-percent"
+                                        class="font-bold text-white text-xs bg-honda-red px-3 py-1 rounded-full shadow-sm">10%
+                                        (Ditetapkan)</span>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-6 sm:mb-8">
-                                <label class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Tempoh Pinjaman</label>
-                                <div class="grid grid-cols-3 gap-2 sm:gap-3" id="tenure-options">
-                                    <button data-years="5" class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-honda-red hover:text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">5 Tahun</button> 
-                                    <button data-years="7" class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-honda-red hover:text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">7 Tahun</button> 
-                                    <button data-years="9" class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-honda-red bg-red-50 rounded-xl font-bold text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">9 Tahun</button>
+                                <label
+                                    class="block text-xs sm:text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Tempoh
+                                    Pinjaman</label>
+                                <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-3" id="tenure-options">
+                                    <button data-years="5"
+                                        class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-honda-red hover:text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">5
+                                        Tahun</button>
+                                    <button data-years="7"
+                                        class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-honda-red hover:text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">7
+                                        Tahun</button>
+                                    <button data-years="9"
+                                        class="tenure-btn py-2.5 sm:py-3.5 px-1 sm:px-4 border-2 border-honda-red bg-red-50 rounded-xl font-bold text-honda-red transition-all text-sm sm:text-base whitespace-nowrap">9
+                                        Tahun</button>
+                                </div>
+                                <div class="flex justify-end items-center gap-2 mt-2">
+                                    <span class="text-xs sm:text-sm text-gray-500 font-medium">Berapa tahun?</span>
+                                    <input type="text" id="tenure-custom-input" value="9"
+                                        class="w-16 text-center bg-gray-50 border-2 border-gray-200 rounded-lg py-1.5 focus:border-honda-red focus:bg-white outline-none font-bold text-gray-900 transition-colors"
+                                        maxlength="2" inputmode="numeric">
+                                    <span class="text-xs sm:text-sm text-gray-500 font-medium">Tahun</span>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-2 sm:mb-4">
                                 <div class="flex items-center justify-between mb-2 sm:mb-3">
-                                    <label class="text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wide">Kadar Faedah (%)</label> 
-                                    <span id="rate-display" class="text-honda-red font-bold text-base sm:text-lg">2.65%</span>
+                                    <label
+                                        class="text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wide">Kadar
+                                        Faedah (%)</label>
+                                    <span id="rate-display"
+                                        class="text-honda-red font-bold text-base sm:text-lg">2.65%</span>
                                 </div>
-                                <input type="range" id="rate-slider" min="2.0" max="4.0" step="0.05" value="2.65" class="w-full cursor-pointer">
+                                <input type="range" id="rate-slider" min="2.0" max="4.0" step="0.05" value="2.65"
+                                    class="w-full cursor-pointer">
                                 <div class="flex justify-between mt-2 text-xs sm:text-sm text-gray-500 font-medium">
-                                    <span>2.0%</span> 
+                                    <span>2.0%</span>
                                     <span>4.0%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="lg:sticky lg:top-28">
-                    <div id="results-panel" class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-2xl relative overflow-hidden">
-                        <div id="result-initial-state" class="absolute inset-0 z-10 flex items-center justify-center bg-gray-900/90 backdrop-blur-sm transition-opacity duration-300">
+                    <div id="results-panel"
+                        class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-2xl relative overflow-hidden">
+                        <div id="result-initial-state"
+                            class="absolute inset-0 z-10 flex items-center justify-center bg-gray-900/90 backdrop-blur-sm transition-opacity duration-300">
                             <div class="text-center">
                                 <i data-lucide="calculator" class="w-12 h-12 text-gray-500 mx-auto mb-3 opacity-50"></i>
-                                <p class="text-gray-400 font-medium text-sm">Pilih model kenderaan<br>untuk melihat kiraan</p>
+                                <p class="text-gray-400 font-medium text-sm">Pilih model kenderaan<br>untuk melihat
+                                    kiraan</p>
                             </div>
                         </div>
 
                         <div id="selected-car-info" class="mb-6 sm:mb-8">
                             <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
+                                <div
+                                    class="w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
                                     <i data-lucide="car-front" class="w-6 h-6 sm:w-8 sm:h-8 text-white"></i>
                                 </div>
                                 <div>
                                     <p class="text-white/60 text-xs sm:text-sm">Model Dipilih</p>
-                                    <h3 id="result-model" class="text-lg sm:text-xl font-bold leading-tight">Sila pilih model</h3>
+                                    <h3 id="result-model" class="text-lg sm:text-xl font-bold leading-tight">Sila pilih
+                                        model</h3>
                                 </div>
                             </div>
                             <div id="result-variant" class="text-white/70 text-xs sm:text-sm mb-2 hidden leading-snug">
                                 Varian: <span class="text-white font-medium">-</span>
                             </div>
                         </div>
-                        
+
                         <div class="space-y-2 sm:space-y-4 mb-6 sm:mb-8 text-sm sm:text-base">
                             <div class="flex justify-between items-center py-2 sm:py-3 border-b border-white/10 gap-2">
-                                <span class="text-white/70">Harga OTR</span> <span id="result-price" class="font-bold text-base sm:text-lg">RM 0</span>
+                                <span class="text-white/70">Harga OTR</span> <span id="result-price"
+                                    class="font-bold text-base sm:text-lg">RM 0</span>
                             </div>
                             <div class="flex justify-between items-center py-2 sm:py-3 border-b border-white/10 gap-2">
-                                <span class="text-white/70">Deposit</span> <span id="result-deposit" class="font-bold text-base sm:text-lg">RM 0</span>
+                                <span class="text-white/70">Deposit</span> <span id="result-deposit"
+                                    class="font-bold text-base sm:text-lg">RM 0</span>
                             </div>
                             <div class="flex justify-between items-center py-2 sm:py-3 border-b border-white/10 gap-2">
-                                <span class="text-white/70">Jumlah Pinjaman</span> <span id="result-loan" class="font-bold text-base sm:text-lg">RM 0</span>
+                                <span class="text-white/70">Jumlah Pinjaman</span> <span id="result-loan"
+                                    class="font-bold text-base sm:text-lg">RM 0</span>
                             </div>
                             <div class="flex justify-between items-center py-2 sm:py-3 border-b border-white/10 gap-2">
-                                <span class="text-white/70">Tempoh</span> <span id="result-tenure" class="font-bold text-sm sm:text-base">9 Tahun</span>
+                                <span class="text-white/70">Tempoh</span> <span id="result-tenure"
+                                    class="font-bold text-sm sm:text-base">9 Tahun</span>
                             </div>
                             <div class="flex justify-between items-center py-2 sm:py-3 border-b border-white/10 gap-2">
-                                <span class="text-white/70">Kadar Faedah</span> <span id="result-rate" class="font-bold text-sm">2.65%</span>
+                                <span class="text-white/70">Kadar Faedah</span> <span id="result-rate"
+                                    class="font-bold text-sm">2.65%</span>
                             </div>
                         </div>
-                        
+
                         <div class="bg-honda-red rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center mb-6 shadow-inner">
                             <p class="text-white/90 text-xs sm:text-sm mb-1 font-medium">Anggaran Bayaran Bulanan</p>
                             <p id="result-monthly" class="text-3xl sm:text-5xl font-extrabold tracking-tight">RM 0</p>
-                            <p class="text-white/70 text-[10px] sm:text-xs mt-2">*Anggaran sahaja, tertakluk kelulusan bank</p>
+                            <p class="text-white/70 text-[10px] sm:text-xs mt-2">*Anggaran sahaja, tertakluk kelulusan
+                                bank</p>
                         </div>
-                        
+
                         <div id="cta-section" class="hidden fade-in relative z-20">
-                            <button id="whatsapp-cta" onclick="submitLead()" class="w-full bg-whatsapp hover:bg-green-600 text-white py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all cta-pulse shadow-lg shadow-green-500/30 cursor-pointer">
+                            <!-- Mini Form Maklumat Pelanggan -->
+                            <div class="mb-4 space-y-2.5">
+                                <p class="text-white/70 text-xs text-center font-medium mb-3">Isi maklumat untuk hantar
+                                    ke ejen ↓</p>
+                                <div>
+                                    <input type="text" id="lead-name" placeholder="Nama Panggilan (cth: Hafiz)"
+                                        maxlength="50"
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/60 focus:bg-white/15 transition-all">
+                                </div>
+                                <div>
+                                    <input type="text" id="lead-fullname"
+                                        placeholder="Nama Penuh (cth: Hafiz bin Abdullah)" maxlength="100"
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/60 focus:bg-white/15 transition-all">
+                                </div>
+                                <div>
+                                    <input type="tel" id="lead-phone" placeholder="No. Telefon (cth: 0123456789)"
+                                        maxlength="15" inputmode="numeric"
+                                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/60 focus:bg-white/15 transition-all">
+                                </div>
+                                <p id="lead-form-error" class="text-red-400 text-xs text-center hidden">Sila isi
+                                    sekurang-kurangnya nama dan no. telefon.</p>
+                            </div>
+                            <button id="whatsapp-cta" onclick="submitLead()"
+                                class="w-full bg-whatsapp hover:bg-green-600 text-white py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all cta-pulse shadow-lg shadow-green-500/30 cursor-pointer">
                                 <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-                                <span>Tanya Ejen Sekarang</span> 
+                                <span>Tanya Ejen Sekarang</span>
                             </button>
                         </div>
                     </div>
@@ -231,30 +416,39 @@
     <section id="portfolio" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-12 gap-12 items-center">
-                <div class="md:col-span-5 relative bg-gray-100 rounded-xl overflow-hidden min-h-[300px] flex items-center justify-center">
-                    <img src="https://i.imgur.com/d9l3A2s.jpeg" alt="Muiz Nazmi - Penasihat Jualan Honda" class="rounded-xl shadow-lg object-cover w-full h-[400px] md:h-[500px]" onerror="this.src='https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800'">
+                <div
+                    class="md:col-span-5 relative bg-gray-100 rounded-xl overflow-hidden min-h-[300px] flex items-center justify-center">
+                    <img id="portfolio-img" src="" alt="Penasihat Jualan"
+                        class="rounded-xl shadow-lg object-cover w-full h-[400px] md:h-[500px] opacity-0 transition-opacity duration-300">
                 </div>
                 <div class="md:col-span-7">
-                    <h3 class="text-3xl font-bold text-honda-dark mb-6 text-center md:text-left">Kenali Penasihat Jualan Anda</h3>
-                    <div class="prose text-gray-600 mb-8 px-2 md:px-0">
-                        <p class="mb-4 text-center md:text-left">Saya merupakan Penasihat Jualan Kereta Honda Ipoh yang berpengalaman lebih 3 tahun dalam bidang pengurusan pembelian kereta dan pakar dalam loan kereta Honda.</p>
-                        <p class="text-center md:text-left">Hubungi saya sekarang untuk sebarang pertanyaan berkaitan promosi terbaru Honda. Saya akan bantu uruskan order anda dengan Pantas & Profesional.</p>
-                        <p class="mt-4 font-medium text-honda-red text-center md:text-left">#OnlineBooking #OnlineSales #HondaMalaysia</p>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center md:text-left">Kenali Penasihat Jualan
+                        Anda</h3>
+                    <div id="portfolio-about-text" class="prose text-gray-600 mb-8 px-2 md:px-0">
+                        <p class="mb-4 text-center md:text-left">Saya merupakan Penasihat Jualan berpengalaman dalam
+                            membantu pelanggan menguruskan pembelian kereta idaman dengan mudah dan tanpa pening kepala.
+                        </p>
+                        <p class="text-center md:text-left">Hubungi saya sekarang untuk sebarang pertanyaan berkaitan
+                            promosi terbaru. Saya akan bantu uruskan pesanan anda dengan Pantas & Profesional.</p>
                     </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <p id="portfolio-tags" class="mb-6 font-medium text-honda-red text-center md:text-left">
+                        #OnlineBooking #OnlineSales</p>
+
+                    <div id="portfolio-highlights" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="border border-gray-200 rounded-lg p-4 flex gap-3 items-start">
                             <i data-lucide="clock" class="w-6 h-6 text-honda-red shrink-0"></i>
                             <div>
                                 <h5 class="font-bold text-gray-800">Urusan Pantas</h5>
-                                <p class="text-sm text-gray-500">Kelulusan pinjaman seawal 48 jam bergantung pada dokumen.</p>
+                                <p class="text-sm text-gray-500">Kelulusan pinjaman seawal 48 jam bergantung pada
+                                    dokumen.</p>
                             </div>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-4 flex gap-3 items-start">
                             <i data-lucide="map-pin" class="w-6 h-6 text-honda-red shrink-0"></i>
                             <div>
                                 <h5 class="font-bold text-gray-800">Penghantaran Terus</h5>
-                                <p class="text-sm text-gray-500">Khidmat penghantaran kereta terus ke rumah (Semenanjung).</p>
+                                <p class="text-sm text-gray-500">Khidmat penghantaran kereta terus ke rumah
+                                    (Semenanjung).</p>
                             </div>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-4 flex gap-3 items-start">
@@ -277,57 +471,6 @@
         </div>
     </section>
 
-    <!-- Seksyen Borang Kutipan Leads -->
-    <section id="borang-leads" class="py-20 bg-honda-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-honda-red opacity-10 rounded-full -mr-32 -mt-32"></div>
-        <div class="absolute bottom-0 left-0 w-48 h-48 bg-honda-red opacity-10 rounded-full -ml-24 -mb-24"></div>
-
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold mb-4">Berminat? Biar Kami Hubungi Anda</h3>
-                <p class="text-gray-400">Isi borang di bawah untuk mendapatkan khidmat perundingan percuma bagi kereta Honda idaman anda.</p>
-            </div>
-
-            <form id="contact-form" onsubmit="submitContact(event)" class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-gray-300">Nama Penuh</label>
-                        <input type="text" id="contact-name" required placeholder="Contoh: Ahmad Ali" 
-                            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-gray-300">Nombor Telefon</label>
-                        <input type="tel" id="contact-phone" required placeholder="Contoh: 0123456789" 
-                            class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition">
-                    </div>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-sm font-semibold mb-2 text-gray-300">Model Yang Diminati</label>
-                    <select id="contact-model" required 
-                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-honda-red transition cursor-pointer">
-                        <option value="" class="bg-honda-dark text-white">-- Pilih Model --</option>
-                        <option value="City" class="bg-honda-dark text-white">Honda City</option>
-                        <option value="City Hatchback" class="bg-honda-dark text-white">Honda City Hatchback</option>
-                        <option value="Civic" class="bg-honda-dark text-white">Honda Civic</option>
-                        <option value="HR-V" class="bg-honda-dark text-white">Honda HR-V</option>
-                        <option value="CR-V" class="bg-honda-dark text-white">Honda CR-V</option>
-                        <option value="WR-V" class="bg-honda-dark text-white">Honda WR-V</option>
-                    </select>
-                </div>
-                <div class="mb-8">
-                    <label class="block text-sm font-semibold mb-2 text-gray-300">Mesej / Pertanyaan (Opsional)</label>
-                    <textarea id="contact-message" rows="4" placeholder="Tulis mesej anda di sini..." 
-                        class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition resize-none"></textarea>
-                </div>
-                <button type="submit" id="contact-submit-btn" class="w-full bg-honda-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
-                    <i data-lucide="send" class="w-5 h-5"></i>
-                    Hantar Maklumat
-                </button>
-                <p id="contact-status" class="mt-4 text-center text-sm hidden"></p>
-            </form>
-        </div>
-    </section>
-
     <!-- Testimonials Section -->
     <section id="testimoni" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -335,11 +478,13 @@
                 <h3 class="text-3xl font-bold text-honda-dark mb-4 text-center">Pelanggan Yang Gembira</h3>
                 <p class="text-gray-600 text-center">Bukti komitmen saya dalam memberikan servis terbaik.</p>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
+
+            <div id="testimonial-grid" class="grid md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-8-1024x1024.jpg" alt="Penyerahan Kereta Honda" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400'">
+                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-8-1024x1024.jpg"
+                        alt="Penyerahan Kereta" class="w-full h-48 object-cover rounded-lg mb-4"
+                        onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400'">
                     <div class="flex text-yellow-400 mb-4">
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -347,10 +492,12 @@
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Servis tiptop! Encik Muiz uruskan semua A-Z. Loan lulus cepat walaupun dokumen ada sikit masalah. Memang rekomen!"</p>
+                    <p class="text-gray-600 mb-6 italic">"Servis tiptop! Encik Muiz uruskan semua A-Z. Loan lulus cepat
+                        walaupun dokumen ada sikit masalah. Memang rekomen!"</p>
                     <div class="flex items-center gap-4 mt-auto">
                         <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden shrink-0">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Client" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
+                                alt="Client" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-bold text-gray-800">Faisal K.</p>
@@ -360,7 +507,9 @@
                 </div>
                 <!-- Testimonial 2 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-5-1024x1024.jpg" alt="Penyerahan Kereta Honda" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=400'">
+                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-5-1024x1024.jpg"
+                        alt="Penyerahan Kereta Honda" class="w-full h-48 object-cover rounded-lg mb-4"
+                        onerror="this.src='https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=400'">
                     <div class="flex text-yellow-400 mb-4">
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -368,10 +517,12 @@
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Sangat informatif. Saya tak tahu beza spec E dan V, Muiz terangkan detail. Kereta sampai on-time. Terima kasih banyak!"</p>
+                    <p class="text-gray-600 mb-6 italic">"Sangat informatif. Saya tak tahu beza spec E dan V, Muiz
+                        terangkan detail. Kereta sampai on-time. Terima kasih banyak!"</p>
                     <div class="flex items-center gap-4 mt-auto">
                         <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden shrink-0">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150" alt="Client" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150"
+                                alt="Client" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-bold text-gray-800">Nurul Huda</p>
@@ -381,7 +532,9 @@
                 </div>
                 <!-- Testimonial 3 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-7-1024x1024.jpg" alt="Penyerahan Kereta Honda" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf0a3?auto=format&fit=crop&q=80&w=400'">
+                    <img src="https://hondaipoh.com/wp-content/uploads/2023/06/Honda-Ipoh-Delivery-7-1024x1024.jpg"
+                        alt="Penyerahan Kereta Honda" class="w-full h-48 object-cover rounded-lg mb-4"
+                        onerror="this.src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf0a3?auto=format&fit=crop&q=80&w=400'">
                     <div class="flex text-yellow-400 mb-4">
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -389,10 +542,12 @@
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Dari trade-in kereta lama sampai ambil kereta baru CR-V, sangat smooth. Tak payah pening kepala turun naik showroom. 5 Bintang."</p>
+                    <p class="text-gray-600 mb-6 italic">"Dari trade-in kereta lama sampai ambil kereta baru CR-V,
+                        sangat smooth. Tak payah pening kepala turun naik showroom. 5 Bintang."</p>
                     <div class="flex items-center gap-4 mt-auto">
                         <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden shrink-0">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" alt="Client" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
+                                alt="Client" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-bold text-gray-800">Datuk Razali</p>
@@ -406,119 +561,98 @@
 
     <!-- Footer -->
     <footer class="bg-honda-dark text-white pt-16 pb-8 border-t-4 border-honda-red">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 mb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 mb-12">
             <div>
                 <div class="flex items-center gap-3 mb-6">
-                    <img src="https://i.postimg.cc/0jG4XkzV/new-logo.jpg" alt="Logo Muiz Nazmi" class="w-8 h-8 rounded object-cover border border-gray-700" onerror="this.src='https://ui-avatars.com/api/?name=Muiz+Nazmi&background=E4002B&color=fff'">
-                    <h4 class="font-bold text-lg">Muiz Nazmi</h4>
+                    <img id="footer-profile-img" src="" alt="Logo"
+                        class="w-8 h-8 rounded object-cover border border-gray-700 opacity-0 transition-opacity">
+                    <h4 id="footer-sa-name" class="font-bold text-lg">Memuatkan...</h4>
                 </div>
-                <p class="text-gray-400 text-sm mb-4">Pakar perunding jualan automotif anda. Membantu rakyat Malaysia merealisasikan impian memiliki kenderaan dengan mudah dan pantas.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-lg mb-6">Pautan Pantas</h4>
-                <ul class="space-y-3 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Halaman Utama</a></li>
-                    <li><a href="#kalkulator" class="hover:text-white transition">Kalkulator Pinjaman</a></li>
-                    <li><a href="#portfolio" class="hover:text-white transition">Tentang Saya</a></li>
-                </ul>
+                <p id="footer-desc" class="text-gray-400 text-sm mb-4">Pakar perunding jualan automotif anda.</p>
             </div>
             <div>
                 <h4 class="font-bold text-lg mb-6">Hubungi Saya</h4>
-                <ul class="space-y-4 text-gray-400 text-sm">
-                    <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +60 14-618 2470</li>
-                    <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> muizhonda8@gmail.com</li>
-                    <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-4 h-4 mt-1 shrink-0"></i> Liputan Seluruh Malaysia</li>
+                <ul id="footer-contact-links" class="space-y-4 text-gray-400 text-sm">
+                    <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> <span
+                            id="footer-sa-phone">-</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Mesej melalui borang
+                        web</li>
+                    <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-4 h-4 mt-1 shrink-0"></i>
+                        Liputan Seluruh Malaysia</li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-8 text-center text-gray-500 text-xs">
-            <p>&copy; 2024 Muiz Nazmi Penasihat Jualan. Hak Cipta Terpelihara.</p>
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-8 text-center text-gray-500 text-xs">
+            <p>&copy; 2026 <span id="footer-copy-name">Sistem SA</span>. Hak Cipta Terpelihara.</p>
         </div>
     </footer>
+
+    <!-- Overlay Block Screen (Bila SA tiada / disekat) -->
+    <div id="blocked-screen"
+        class="fixed inset-0 z-[100] bg-gray-900 flex flex-col items-center justify-center p-6 text-center hidden">
+        <i data-lucide="shield-alert" class="w-20 h-20 text-red-500 mb-6 mx-auto opacity-50"></i>
+        <h2 class="text-3xl font-bold text-white mb-3">Halaman Tidak Ditemui / Ralat</h2>
+        <p class="text-gray-400 max-w-md mx-auto mb-8">Ejen Jualan (SA) yang anda cari tiada di dalam sistem kami atau
+            telah dinyahaktifkan oleh pihak Agensi. Sila hubungi pihak pengurusan jika ini adalah kesilapan.</p>
+    </div>
 
     <!-- Skrip Logika -->
     <script>
         lucide.createIcons();
 
-        const hondaModels = [
-            {
-                id: 'city',
-                name: 'City',
-                category: 'Sedan',
-                image: 'https://hondaipoh.com/wp-content/uploads/2024/03/hondaipoh-1536x847.jpg',
-                variants: [
-                    { name: 'City 1.5L S', price: 84900 },
-                    { name: 'City 1.5L E', price: 89900 },
-                    { name: 'City 1.5L V', price: 94900 },
-                    { name: 'City RS e:HEV', price: 111900 }
-                ]
-            },
-            {
-                id: 'civic',
-                name: 'All New Civic',
-                category: 'Sedan',
-                image: 'https://hondaipoh.com/wp-content/uploads/2022/06/6cef67d651b8328af4629a746fe41ebdd329075337796-1.png',
-                variants: [
-                    { name: 'Civic 1.5L E', price: 131900 },
-                    { name: 'Civic 1.5L V', price: 144900 },
-                    { name: 'Civic 1.5L RS', price: 151900 },
-                    { name: 'Civic e:HEV RS', price: 167900 }
-                ]
-            },
-            {
-                id: 'hrv',
-                name: 'HR-V',
-                category: 'SUV',
-                image: 'https://hondaipoh.com/wp-content/uploads/2023/04/honda-hrv-lunar-silver-metallic-2022.png',
-                variants: [
-                    { name: 'HR-V 1.5L S', price: 115900 },
-                    { name: 'HR-V 1.5L Turbo E', price: 130900 },
-                    { name: 'HR-V 1.5L Turbo V', price: 135900 },
-                    { name: 'HR-V RS e:HEV', price: 141900 }
-                ]
-            },
-            {
-                id: 'crv',
-                name: 'CR-V',
-                category: 'SUV',
-                image: 'https://hondaipoh.com/wp-content/uploads/2023/12/new-crv.png',
-                variants: [
-                    { name: 'CR-V 1.5L S', price: 159900 },
-                    { name: 'CR-V 1.5L E', price: 169900 },
-                    { name: 'CR-V 1.5L V AWD', price: 181900 },
-                    { name: 'CR-V e:HEV RS', price: 195900 }
-                ]
-            },
-            {
-                id: 'cityhb',
-                name: 'City Hatchback',
-                category: 'Hatchback',
-                image: 'https://hondaipoh.com/wp-content/uploads/2025/01/honda-hatchback.jpeg',
-                variants: [
-                    { name: '1.5L S', price: 85900 },
-                    { name: '1.5L E', price: 90900 },
-                    { name: '1.5L V', price: 95900 },
-                    { name: 'RS e:HEV', price: 112900 }
-                ]
-            },
-            {
-                id: 'wrv',
-                name: 'WR-V',
-                category: 'Compact SUV',
-                image: 'https://hondaipoh.com/wp-content/uploads/2023/07/wrv.webp',
-                variants: [
-                    { name: 'WR-V 1.5L S', price: 89900 },
-                    { name: 'WR-V 1.5L E', price: 95900 },
-                    { name: 'WR-V 1.5L V', price: 99900 },
-                    { name: 'WR-V 1.5L RS', price: 107900 }
-                ]
+        // --- KONFIGURASI PANGKALAN DATA APPS SCRIPT ---
+        const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPndjwl47yruOGEN23_KGL5SjH8TnOilCIgx1F-xuLwoOhAXfU4K_WkWcLJz0rW6lklA/exec";
+
+        // Data Kereta Default (Akan digantikan oleh data Admin)
+        // CAR_DATA dibuang sepenuhnya.
+
+        // HELPER: Convert mana-mana format Drive URL ke lh3.googleusercontent.com/d/ — format paling stabil untuk <img> embed
+        function getStableDriveUrl(origUrl) {
+            if (!origUrl) return origUrl;
+            if (origUrl.startsWith('data:')) return origUrl; // Base64 preview bypass
+
+            // Sudah format lh3 — format terbaik, guna terus
+            if (origUrl.includes('lh3.googleusercontent.com/d/')) {
+                return origUrl;
             }
-        ];
+
+            let fileId = null;
+            if (origUrl.includes('uc?export=')) {
+                const match = origUrl.match(/[?&]id=([^&]+)/);
+                if (match) fileId = match[1];
+            } else if (origUrl.includes('thumbnail?id=')) {
+                const match = origUrl.match(/id=([^&]+)/);
+                if (match) fileId = match[1];
+            } else if (origUrl.includes('drive.google.com/file/d/')) {
+                const match = origUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match) fileId = match[1];
+            }
+
+            if (fileId) {
+                return `https://lh3.googleusercontent.com/d/${fileId}`;
+            }
+            return origUrl;
+        }
+
+        // State & SA Default Config
+        let activeModels = [];
+        let currentSA = {
+            id: null,
+            name: "",
+            phone: "60123456789", // fallback
+            brand: "Proton",
+            heroImage: "",
+            profileImage: "",
+            status: "Aktif"
+        };
 
         let calculatorState = {
             selectedModel: null,
             selectedVariant: null,
             depositPercent: 10,
+            depositRM: 0,
+            isCustomDepositRM: false,
             tenure: 9,
             interestRate: 2.65,
             hasCalculated: false
@@ -526,7 +660,6 @@
 
         // URLs untuk Google Sheets (GANTI DENGAN URL DEPLOY ANDA)
         const CALC_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrQrdZkoI3xWxCD2C6FQPX7r6gTEhtrXD5RIDoor40I8_t3hxyu89YOmsFw8fddZw7nw/exec";
-        const CONTACT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyORl2EQp5JjPcRB8O_pG80nmYkWWLcNAEz9_GEna_5_So3uaIr0h0wT1dvlx9p-gkk/exec"; 
 
         function formatCurrency(amount) {
             return 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -541,15 +674,20 @@
 
         function renderModelGrid() {
             const grid = document.getElementById('model-grid');
-            grid.innerHTML = hondaModels.map(model => `
+            if (!activeModels || activeModels.length === 0) {
+                grid.innerHTML = `<p class="text-sm text-gray-500 col-span-3">Pangkalan data model tidak ditemui untuk jenama ${currentSA.brand}</p>`;
+                return;
+            }
+
+            grid.innerHTML = activeModels.map(model => `
                 <button 
                     data-model-id="${model.id}"
                     class="model-btn p-2 sm:p-4 border-2 border-gray-200 rounded-xl text-center hover:border-honda-red hover:bg-red-50 transition-all group focus:outline-none flex flex-col items-center justify-center"
                 >
-                    ${model.image.startsWith('http') 
-                        ? `<img src="${model.image}" alt="${model.name}" class="h-8 sm:h-12 w-auto max-w-[90%] mx-auto mb-2 object-contain mix-blend-multiply">` 
-                        : `<span class="text-3xl sm:text-4xl block mb-2">${model.image}</span>`
-                    }
+                    ${(model.image && (model.image.startsWith('http') || model.image.startsWith('data:')))
+                    ? `<img src="${getStableDriveUrl(model.image)}" alt="${model.name}" class="h-8 sm:h-12 w-auto max-w-[90%] mx-auto mb-2 object-contain mix-blend-multiply" onerror="this.style.display='none';">`
+                    : (model.image ? `<span class="text-3xl sm:text-4xl block mb-2">${model.image}</span>` : '')
+                }
                     <span class="font-bold text-gray-900 group-hover:text-honda-red text-xs sm:text-base">${model.name}</span>
                     <span class="text-[10px] sm:text-xs text-gray-500 block">${model.category}</span>
                 </button>
@@ -561,7 +699,7 @@
         }
 
         function selectModel(modelId) {
-            const model = hondaModels.find(m => m.id === modelId);
+            const model = activeModels.find(m => m.id === modelId);
             if (!model) return;
 
             calculatorState.selectedModel = model;
@@ -581,23 +719,23 @@
             const calcControls = document.getElementById('calc-controls');
             const resultInitialState = document.getElementById('result-initial-state');
 
-            if(calcOverlay) {
+            if (calcOverlay) {
                 calcOverlay.classList.add('opacity-0');
                 setTimeout(() => calcOverlay.classList.add('hidden'), 300);
             }
-            if(calcControls) {
+            if (calcControls) {
                 calcControls.classList.remove('opacity-40', 'pointer-events-none');
             }
-            if(resultInitialState) {
+            if (resultInitialState) {
                 resultInitialState.classList.add('opacity-0');
                 setTimeout(() => resultInitialState.classList.add('hidden'), 300);
             }
 
             const variantSection = document.getElementById('variant-section');
             const variantSelect = document.getElementById('variant-select');
-            
+
             variantSection.classList.remove('hidden');
-            variantSelect.innerHTML = model.variants.map((v, i) => 
+            variantSelect.innerHTML = model.variants.map((v, i) =>
                 `<option value="${i}" ${i === 0 ? 'selected' : ''}>${v.name} - ${formatCurrency(v.price)}</option>`
             ).join('');
 
@@ -607,12 +745,30 @@
         function updateCalculation() {
             if (!calculatorState.selectedModel || !calculatorState.selectedVariant) return;
 
-            const price = calculatorState.selectedVariant.price;
-            const depositAmount = Math.round(price * (calculatorState.depositPercent / 100));
+            const price = parseInt(calculatorState.selectedVariant.price);
+
+            let depositAmount = Math.round(price * (calculatorState.depositPercent / 100));
+            if (calculatorState.isCustomDepositRM) {
+                depositAmount = calculatorState.depositRM;
+                if (depositAmount > price) depositAmount = price;
+                let equivPct = (depositAmount / price) * 100;
+                let depositSlider = document.getElementById('deposit-slider');
+                depositSlider.value = equivPct;
+                document.getElementById('deposit-percent').textContent = equivPct.toFixed(1) + '% (Manual)';
+                updateSliderProgress(depositSlider);
+            } else {
+                document.getElementById('deposit-percent').textContent = calculatorState.depositPercent + '% (Ditetapkan)';
+            }
+
+            const depositInput = document.getElementById('deposit-custom-input');
+            if (depositInput && document.activeElement !== depositInput) {
+                depositInput.value = depositAmount.toLocaleString('en-MY');
+            }
+
             const loanAmount = price - depositAmount;
             const monthlyPayment = calculateMonthlyPayment(loanAmount, calculatorState.interestRate, calculatorState.tenure);
 
-            document.getElementById('result-model').textContent = 'Honda ' + calculatorState.selectedModel.name;
+            document.getElementById('result-model').textContent = currentSA.brand + ' ' + calculatorState.selectedModel.name;
             document.getElementById('result-variant').classList.remove('hidden');
             document.getElementById('result-variant').innerHTML = `Varian: <span class="text-white font-medium">${calculatorState.selectedVariant.name}</span>`;
             document.getElementById('result-price').textContent = formatCurrency(price);
@@ -621,7 +777,6 @@
             document.getElementById('result-tenure').textContent = calculatorState.tenure + ' Tahun';
             document.getElementById('result-rate').textContent = calculatorState.interestRate.toFixed(2) + '%';
             document.getElementById('result-monthly').textContent = formatCurrency(monthlyPayment);
-            document.getElementById('deposit-display').textContent = formatCurrency(depositAmount);
 
             calculatorState.hasCalculated = true;
             document.getElementById('cta-section').classList.remove('hidden');
@@ -630,104 +785,83 @@
         async function submitLead() {
             if (!calculatorState.selectedModel || !calculatorState.selectedVariant) return;
 
+            // --- BACA & SAHKAN INPUT BORANG PELANGGAN ---
+            const leadName = (document.getElementById('lead-name').value || '').trim();
+            const leadFullName = (document.getElementById('lead-fullname').value || '').trim();
+            const leadPhone = (document.getElementById('lead-phone').value || '').replace(/[^0-9]/g, '').trim();
+            const errorEl = document.getElementById('lead-form-error');
+
+            // Wajib isi sekurang-kurangnya Nama dan No Telefon
+            if (!leadName || !leadPhone) {
+                errorEl.classList.remove('hidden');
+                document.getElementById('lead-name').focus();
+                return;
+            }
+            errorEl.classList.add('hidden');
+
             const btn = document.getElementById('whatsapp-cta');
-            const originalText = btn.innerHTML;
-            
+            const originalHTML = btn.innerHTML;
             btn.innerHTML = `<span>Menghantar...</span>`;
             btn.disabled = true;
 
-            const price = calculatorState.selectedVariant.price;
-            const depositAmount = Math.round(price * (calculatorState.depositPercent / 100));
+            // --- KIRA SEMULA NILAI KEWANGAN ---
+            const price = parseInt(calculatorState.selectedVariant.price);
+            let depositAmount = Math.round(price * (calculatorState.depositPercent / 100));
+            if (calculatorState.isCustomDepositRM) {
+                depositAmount = calculatorState.depositRM;
+                if (depositAmount > price) depositAmount = price;
+            }
             const loanAmount = price - depositAmount;
             const monthlyPayment = calculateMonthlyPayment(loanAmount, calculatorState.interestRate, calculatorState.tenure);
 
-            const leadData = {
-                modelName: calculatorState.selectedModel.name,
-                variantName: calculatorState.selectedVariant.name,
-                carPrice: price,
-                depositAmount: depositAmount,
-                depositPercent: calculatorState.depositPercent,
-                loanAmount: loanAmount,
-                loanTenure: calculatorState.tenure,
-                interestRate: calculatorState.interestRate,
-                monthlyInstallment: monthlyPayment,
-                status: "Baru"
+            // --- BINA MESEJ WHATSAPP ---
+            const saPhone = document.getElementById('footer-sa-phone').textContent.replace(/[^0-9]/g, '');
+            const messageStr = `Hai, saya ${leadName} berminat dengan kenderaan berikut:\n\n` +
+                `Model: ${currentSA.brand} ${calculatorState.selectedModel.name}\n` +
+                `Varian: ${calculatorState.selectedVariant.name}\n` +
+                `Harga OTR: ${formatCurrency(price)}\n` +
+                `Deposit: ${formatCurrency(depositAmount)}\n` +
+                `Pinjaman: ${formatCurrency(loanAmount)}\n` +
+                `Tempoh: ${calculatorState.tenure} Tahun\n` +
+                `Faedah: ${calculatorState.interestRate.toFixed(2)}%\n\n` +
+                `*Anggaran Bulanan: ${formatCurrency(monthlyPayment)}*\n\n` +
+                `No. Telefon saya: ${leadPhone}\n` +
+                `Boleh bantu saya semak kelayakan?`;
+
+            const whatsappUrl = `https://wa.me/${saPhone}?text=${encodeURIComponent(messageStr)}`;
+
+            // --- PAYLOAD LENGKAP KE APPS SCRIPT (12 KOLUM) ---
+            const payloadToBackend = {
+                action: 'submitLead',
+                saId: currentSA.id || 1,
+                name: leadName,                                                          // Kolum: Nama
+                fullName: leadFullName || leadName,                                      // Kolum: Nama Penuh
+                phone: leadPhone,                                                        // Kolum: No Telefon
+                model: currentSA.brand + ' ' + calculatorState.selectedModel.name,      // Kolum: Model
+                variant: calculatorState.selectedVariant.name,                           // Kolum: Varian
+                priceOTR: formatCurrency(price),                                         // Kolum: Harga OTR
+                deposit: formatCurrency(depositAmount),                                  // Kolum: Deposit
+                loan: formatCurrency(loanAmount),                                        // Kolum: Pinjaman
+                tenure: calculatorState.tenure + ' Tahun',                              // Kolum: Tempoh
+                interestRate: calculatorState.interestRate.toFixed(2) + '%',            // Kolum: Faedah
+                monthly: formatCurrency(monthlyPayment)                                  // Kolum: Anggaran Bulanan
             };
 
-            const phone = "60146182470";
-            const message = "Hai Muiz, saya berminat dengan Honda berikut:\n\n" +
-                            "Model: Honda " + calculatorState.selectedModel.name + "\n" +
-                            "Varian: " + calculatorState.selectedVariant.name + "\n" +
-                            "Harga OTR: " + formatCurrency(price) + "\n" +
-                            "Deposit: " + formatCurrency(depositAmount) + " (" + calculatorState.depositPercent + "%)\n" +
-                            "Pinjaman: " + formatCurrency(loanAmount) + "\n" +
-                            "Tempoh: " + calculatorState.tenure + " Tahun\n" +
-                            "Faedah: " + calculatorState.interestRate.toFixed(2) + "%\n\n" +
-                            "*Anggaran Bulanan: " + formatCurrency(monthlyPayment) + "*\n\n" +
-                            "Boleh bantu saya semak kelayakan?";
-            
-            const whatsappUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
             try {
-                if (CALC_SCRIPT_URL !== "") {
-                    await fetch(CALC_SCRIPT_URL, {
+                if (APP_SCRIPT_URL.startsWith('http')) {
+                    await fetch(APP_SCRIPT_URL, {
                         method: 'POST',
-                        mode: 'no-cors', 
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(leadData)
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payloadToBackend)
                     });
                 }
             } catch (err) {
-                console.error("Gagal simpan ke Sheets:", err);
+                console.error("Gagal hantar data lead ke Google Sheets:", err);
             } finally {
-                btn.innerHTML = originalText;
+                btn.innerHTML = originalHTML;
                 btn.disabled = false;
                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-            }
-        }
-
-        async function submitContact(event) {
-            event.preventDefault();
-            
-            const btn = document.getElementById('contact-submit-btn');
-            const status = document.getElementById('contact-status');
-            const originalText = btn.innerHTML;
-
-            const formData = {
-                fullName: document.getElementById('contact-name').value,
-                phone: document.getElementById('contact-phone').value,
-                modelInterest: document.getElementById('contact-model').value,
-                message: document.getElementById('contact-message').value
-            };
-
-            btn.disabled = true;
-            btn.innerHTML = `<span>Sila tunggu...</span>`;
-            status.classList.remove('hidden', 'text-green-500', 'text-red-500');
-            status.classList.add('text-gray-400');
-            status.textContent = "Menghantar maklumat anda...";
-
-            try {
-                if (CONTACT_SCRIPT_URL === "") {
-                    throw new Error("URL Apps Script belum dipasang.");
-                }
-
-                await fetch(CONTACT_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                status.classList.replace('text-gray-400', 'text-green-400');
-                status.textContent = "Berjaya! Maklumat anda telah dihantar. Ejen akan menghubungi anda segera.";
-                document.getElementById('contact-form').reset();
-            } catch (err) {
-                status.classList.replace('text-gray-400', 'text-red-400');
-                status.textContent = "Maaf, ralat berlaku. Sila cuba lagi atau hubungi terus via WhatsApp.";
-                console.error(err);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = originalText;
             }
         }
 
@@ -743,17 +877,33 @@
             document.getElementById('variant-select').addEventListener('change', (e) => {
                 const variantIndex = parseInt(e.target.value);
                 calculatorState.selectedVariant = calculatorState.selectedModel.variants[variantIndex];
+                calculatorState.isCustomDepositRM = false;
                 updateCalculation();
             });
 
             const depositSlider = document.getElementById('deposit-slider');
+            const depositInput = document.getElementById('deposit-custom-input');
+
             depositSlider.addEventListener('input', (e) => {
                 calculatorState.depositPercent = parseInt(e.target.value);
-                document.getElementById('deposit-percent').textContent = calculatorState.depositPercent + '%';
+                calculatorState.isCustomDepositRM = false;
                 updateSliderProgress(depositSlider);
                 updateCalculation();
             });
             updateSliderProgress(depositSlider);
+
+            if (depositInput) {
+                depositInput.addEventListener('input', (e) => {
+                    let cleanedVal = e.target.value.replace(/[^0-9]/g, '');
+                    if (e.target.value !== cleanedVal) {
+                        e.target.value = cleanedVal;
+                    }
+                    let rawVal = cleanedVal || '0';
+                    calculatorState.depositRM = parseInt(rawVal);
+                    calculatorState.isCustomDepositRM = true;
+                    updateCalculation();
+                });
+            }
 
             const rateSlider = document.getElementById('rate-slider');
             rateSlider.addEventListener('input', (e) => {
@@ -764,25 +914,255 @@
             });
             updateSliderProgress(rateSlider);
 
-            document.querySelectorAll('.tenure-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    calculatorState.tenure = parseInt(btn.dataset.years);
-                    document.querySelectorAll('.tenure-btn').forEach(b => {
+            const tenureOptions = document.querySelectorAll('.tenure-btn');
+            const tenureInput = document.getElementById('tenure-custom-input');
+
+            function syncTenureUI(years) {
+                tenureOptions.forEach(b => {
+                    if (parseInt(b.dataset.years) === years) {
+                        b.classList.add('border-honda-red', 'bg-red-50', 'text-honda-red');
+                        b.classList.remove('border-gray-200', 'text-gray-500');
+                    } else {
                         b.classList.remove('border-honda-red', 'bg-red-50', 'text-honda-red');
                         b.classList.add('border-gray-200', 'text-gray-500');
-                    });
-                    btn.classList.add('border-honda-red', 'bg-red-50', 'text-honda-red');
-                    btn.classList.remove('border-gray-200', 'text-gray-500');
+                    }
+                });
+                if (tenureInput && tenureInput.value !== years.toString() && document.activeElement !== tenureInput) {
+                    tenureInput.value = years;
+                }
+            }
+
+            tenureOptions.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    calculatorState.tenure = parseInt(btn.dataset.years);
+                    syncTenureUI(calculatorState.tenure);
                     updateCalculation();
                 });
             });
+
+            if (tenureInput) {
+                tenureInput.addEventListener('input', (e) => {
+                    let cleanedVal = e.target.value.replace(/[^0-9]/g, '');
+                    if (e.target.value !== cleanedVal) {
+                        e.target.value = cleanedVal;
+                    }
+                    let rawVal = cleanedVal || '0';
+                    let years = parseInt(rawVal);
+                    if (years > 15) {
+                        years = 15;
+                        e.target.value = '15';
+                    }
+                    calculatorState.tenure = years;
+                    syncTenureUI(years);
+                    updateCalculation();
+                });
+            }
+        }
+
+        // --- FETCH DYNAMIC SA CONFIG DATA ---
+        async function initSADashboard() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const saId = urlParams.get('sa');
+
+            if (!saId) {
+                // Tiada SA ID - redirect terus ke halaman utama agensi
+                window.location.replace('utama.html');
+                return;
+            }
+
+            if (!APP_SCRIPT_URL.startsWith('http')) {
+                console.error("Sila letak URL App Script di kod sumber index.html");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${APP_SCRIPT_URL}?sa=${saId}`);
+                const data = await res.json();
+
+                if (data.success && data.data) {
+                    currentSA = data.data;
+
+                    if (currentSA.status !== 'Aktif') {
+                        showBlockedScreen();
+                        return;
+                    }
+
+                    applySAConfigs();
+                } else {
+                    showBlockedScreen();
+                }
+            } catch (err) {
+                console.error("Failed fetching SA:", err);
+                showBlockedScreen();
+            }
+        }
+
+        function showBlockedScreen() {
+            document.body.style.overflow = 'hidden';
+            const blockedScreen = document.getElementById('blocked-screen');
+            if (blockedScreen) {
+                blockedScreen.classList.remove('hidden');
+            }
+        }
+
+        function applySAConfigs() {
+            // URL akan diconvert oleh getStableDriveUrl() ke format lh3 — tiada pre-processing diperlukan di sini
+
+            // 1. Asas & Header
+            document.title = `Kalkulator Pinjaman ${currentSA.brand || 'Kereta'} - ${currentSA.name || ''}`;
+            const safeName = currentSA.name || "Penasihat Jualan";
+
+            // Header
+            document.getElementById('nav-sa-name').textContent = safeName;
+            document.getElementById('nav-sa-brand').textContent = currentSA.infoSA || ("Penasihat Jualan Sah " + (currentSA.brand || ''));
+
+            // Logo Image
+            const fallbackLogo = `https://ui-avatars.com/api/?name=${encodeURIComponent(safeName)}&background=111827&color=fff`;
+            const headerLogo = document.getElementById('nav-profile-img');
+            headerLogo.src = getStableDriveUrl(currentSA.logoImage || currentSA.profileImage) || fallbackLogo;
+            headerLogo.classList.remove('opacity-0');
+
+            // 2. Seksyen Hero
+            if (document.getElementById('hero-promo')) {
+                document.getElementById('hero-promo').textContent = currentSA.promo || "Promosi Eksklusif Ekstra Penjimatan!";
+            }
+            document.getElementById('hero-title').textContent = currentSA.heroTitle || `Miliki ${currentSA.brand || 'Kereta'} Idaman Anda Hari Ini.`;
+            if (document.getElementById('hero-subtitle')) {
+                document.getElementById('hero-subtitle').textContent = currentSA.heroSubtitle || "Urusan mudah, telus, dan pantas. Kira anggaran bulanan anda sekarang.";
+            }
+            document.getElementById('hero-sa-name').textContent = safeName;
+
+            const placeholderHero = "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800";
+            const heroImg = document.getElementById('hero-img');
+            heroImg.src = getStableDriveUrl(currentSA.heroImage) || placeholderHero;
+            heroImg.classList.remove('opacity-0');
+
+            // 3. Kalkulator (Tukar CAR_DATA kepada currentSA.models)
+            document.getElementById('choose-model-label').textContent = `Pilih Model ${currentSA.brand || ''}`;
+            activeModels = currentSA.models || [];
+
+            const contactModelSelect = document.getElementById('contact-model');
+            if (contactModelSelect && activeModels.length > 0) {
+                contactModelSelect.innerHTML = `<option value="" class="bg-gray-900 text-white">-- Pilih Model --</option>` +
+                    activeModels.map(m => `<option value="${m.name}" class="bg-gray-900 text-white">${currentSA.brand} ${m.name}</option>`).join('');
+            }
+
+            // 4. Tentang Saya
+            const pfImg = document.getElementById('portfolio-img');
+            pfImg.src = getStableDriveUrl(currentSA.profileImage) || fallbackLogo;
+            pfImg.classList.remove('opacity-0');
+
+            // Textarea
+            const aboutTextContainer = document.getElementById('portfolio-about-text');
+            if (aboutTextContainer) {
+                const text = currentSA.aboutText || "Saya merupakan Penasihat Jualan berpengalaman.";
+                aboutTextContainer.innerHTML = text.split('\\n').map(p => `<p class="mb-4 text-center md:text-left">${p}</p>`).join('');
+            }
+            document.getElementById('portfolio-tags').textContent = currentSA.hashtags || `#OnlineBooking`;
+
+            // 4 Kotak Serlahan
+            const highlightsContainer = document.getElementById('portfolio-highlights');
+            if (highlightsContainer && currentSA.aboutPoints && currentSA.aboutPoints.length > 0) {
+                const icons = ['clock', 'map-pin', 'file-check-2', 'shield-check'];
+                highlightsContainer.innerHTML = currentSA.aboutPoints.map((pt, i) => {
+                    if (!pt.title) return ''; // Skip empty
+                    const fallbackIcon = icons[i] || 'info';
+                    return `
+                        <div class="border border-gray-200 rounded-lg p-4 flex gap-3 items-start">
+                            <i data-lucide="${fallbackIcon}" class="w-6 h-6 text-honda-red shrink-0"></i>
+                            <div>
+                                <h5 class="font-bold text-gray-800">${pt.title}</h5>
+                                <p class="text-sm text-gray-500">${pt.subtitle || ''}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 5. Testimoni
+            const testiGrid = document.getElementById('testimonial-grid');
+            if (testiGrid && currentSA.testimonials && currentSA.testimonials.length > 0) {
+                testiGrid.innerHTML = currentSA.testimonials.map(t => {
+                    const imgUrl = t.image
+                        ? getStableDriveUrl(t.image)
+                        : "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400";
+
+                    const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name || 'P')}&background=f3f4f6&color=1f2937`;
+
+                    return `
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col">
+                            <img src="${imgUrl}"
+                                alt="Penyerahan Kenderaan" class="w-full h-48 object-cover rounded-lg mb-4">
+                            <div class="flex text-yellow-400 mb-4">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6 italic">"${t.feedback}"</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden shrink-0">
+                                    <img src="${avatarUrl}" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800">${t.name}</p>
+                                    <p class="text-xs text-gray-500">${t.product}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else if (testiGrid) {
+                document.getElementById('testimoni').style.display = 'none'; // Sembunyi jika tiada testimoni
+            }
+
+            // 6. Footer
+            document.getElementById('footer-sa-name').textContent = safeName;
+            document.getElementById('footer-copy-name').textContent = safeName;
+
+            const dp2 = document.getElementById('footer-profile-img');
+            dp2.src = getStableDriveUrl(currentSA.logoImage || currentSA.profileImage) || fallbackLogo;
+            dp2.classList.remove('opacity-0');
+
+            if (document.getElementById('footer-desc')) {
+                document.getElementById('footer-desc').textContent = currentSA.footerDescription || "Pakar perunding jualan automotif anda.";
+            }
+
+            const contactLinksContainer = document.getElementById('footer-contact-links');
+            if (contactLinksContainer) {
+                let html = '';
+                // Add phone as anchor
+                if (currentSA.phone) {
+                    html += `<li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4 text-gray-400"></i> ${currentSA.phone}</li>`;
+                }
+
+                if (currentSA.contactLinks && currentSA.contactLinks.length > 0) {
+                    html += currentSA.contactLinks.map(c => `
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-honda-red"></i> 
+                            ${c.label}: <span class="text-white">${c.value}</span>
+                        </li>
+                    `).join('');
+                } else {
+                    html += `<li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> Mesej melalui borang web</li>
+                             <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-4 h-4 mt-1 shrink-0"></i> Liputan Seluruh Malaysia</li>`;
+                }
+                contactLinksContainer.innerHTML = html;
+            }
+
+            // Render Kalkulator Barulah Berjalan
+            renderModelGrid();
+            if (window.lucide) {
+                lucide.createIcons(); // refresh icons after dynamic injection
+            }
+            initEventListeners();
         }
 
         window.onload = () => {
-            lucide.createIcons();
-            renderModelGrid();
-            initEventListeners();
+            initSADashboard();
         };
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -32,35 +34,222 @@
     </script>
     <style>
         /* Kustomisasi Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #E4002B; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #b30022; }
-        
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Animasi Loading */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(228, 0, 43, 0.3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(228, 0, 43, 0.6);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Shimmer Loading */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Spinner */
         .spinner {
-            border: 3px solid rgba(228, 0, 43, 0.1);
+            border: 3px solid rgba(228, 0, 43, 0.08);
             border-left-color: #E4002B;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
+            width: 28px;
+            height: 28px;
+            animation: spin 0.8s linear infinite;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Pulse Dot */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* Stat Card Hover */
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Table Row Hover */
+        .lead-row {
+            transition: all 0.2s ease;
+        }
+
+        .lead-row:hover {
+            background: linear-gradient(90deg, rgba(228, 0, 43, 0.03), transparent) !important;
+        }
+
+        /* Lead Card (Mobile) */
+        .lead-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lead-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.12);
+        }
+
+        .lead-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Badge */
+        .model-badge {
+            background: linear-gradient(135deg, #E4002B, #ff3355);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        /* Custom Select */
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+
+        /* Counter Animation */
+        .count-up {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #E4002B, #ff5577);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile card grid */
+        .leads-cards-container {
+            display: none;
+        }
+
+        .leads-table-container {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .leads-cards-container {
+                display: grid;
+            }
+
+            .leads-table-container {
+                display: none;
+            }
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-honda-red selection:text-white overflow-x-hidden">
+
+<body
+    class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-honda-red selection:text-white overflow-x-hidden">
 
     <!-- ==================== SKRIN LOG MASUK ==================== -->
-    <div id="login-screen" class="min-h-screen flex items-center justify-center bg-honda-dark fixed inset-0 z-50 p-4 relative overflow-hidden">
+    <div id="login-screen"
+        class="min-h-screen flex items-center justify-center bg-honda-dark fixed inset-0 z-50 p-4 relative overflow-hidden">
         <!-- Background Decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-honda-red opacity-20 rounded-full blur-3xl -mr-32 -mt-32"></div>
-        <div class="absolute bottom-0 left-0 w-72 h-72 bg-honda-red opacity-10 rounded-full blur-3xl -ml-24 -mb-24"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-honda-red opacity-10 rounded-full blur-3xl -ml-24 -mb-24">
+        </div>
 
-        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full border border-gray-100 relative z-10 fade-in">
+        <div
+            class="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full border border-gray-100 relative z-10 fade-in">
             <div class="text-center mb-8">
                 <div class="w-16 h-16 bg-honda-light rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <i data-lucide="shield-check" class="w-8 h-8 text-honda-red"></i>
@@ -73,23 +262,27 @@
                 <div class="mb-5">
                     <label class="block text-sm font-bold text-gray-700 mb-2">Nama Pengguna (Username)</label>
                     <div class="relative">
-                        <i data-lucide="user" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
-                        <input type="text" id="username" required 
+                        <i data-lucide="user"
+                            class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                        <input type="text" id="username" required
                             class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-gray-900 font-medium">
                     </div>
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-bold text-gray-700 mb-2">Kata Laluan (Password)</label>
                     <div class="relative">
-                        <i data-lucide="lock" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
-                        <input type="password" id="password" required 
+                        <i data-lucide="lock"
+                            class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                        <input type="password" id="password" required
                             class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-gray-900 font-medium">
                     </div>
                 </div>
-                
-                <p id="login-error" class="text-honda-red text-sm font-medium text-center mb-4 hidden">Sila semak semula ID dan Kata Laluan anda.</p>
 
-                <button type="submit" class="w-full bg-honda-red hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg shadow-red-500/30 flex items-center justify-center gap-2">
+                <p id="login-error" class="text-honda-red text-sm font-medium text-center mb-4 hidden">Sila semak semula
+                    ID dan Kata Laluan anda.</p>
+
+                <button type="submit"
+                    class="w-full bg-honda-red hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg shadow-red-500/30 flex items-center justify-center gap-2">
                     Log Masuk <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
             </form>
@@ -98,32 +291,40 @@
 
     <!-- ==================== DASHBOARD UTAMA ==================== -->
     <div id="dashboard-screen" class="hidden min-h-screen flex flex-col">
-        
+
         <!-- Navigasi Atas -->
         <nav class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-20 items-center">
+                <div class="flex flex-col sm:flex-row py-4 sm:py-0 justify-between sm:h-20 items-center gap-4 sm:gap-0">
                     <div class="flex items-center gap-3">
-                        <div class="bg-honda-red text-white p-2 rounded-lg">
-                            <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+                        <div class="bg-honda-dark text-white p-2 rounded-lg mix-blend-multiply">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h1 class="font-bold text-lg text-honda-dark leading-tight">Admin Dashboard</h1>
-                            <p class="text-xs text-gray-500">Muiz Nazmi - Honda Sales</p>
+                            <h1 class="font-bold text-lg text-honda-dark leading-tight text-center sm:text-left">Puan
+                                Azwin
+                                Dashboard</h1>
+                            <p class="text-xs text-gray-500 text-center sm:text-left">Sistem Pengurusan SA & Leads</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-200 text-gray-700 hover:text-honda-red hover:border-honda-red bg-gray-50 transition">
+                    <div class="flex items-center justify-center gap-4 w-full sm:w-auto">
+                        <a href="index.html"
+                            class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-200 text-gray-700 hover:text-honda-red hover:border-honda-red bg-gray-50 transition">
                             <i data-lucide="home" class="w-4 h-4"></i>
                             Halaman Utama
                         </a>
-                        <button onclick="fetchSheetData()" class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light" title="Muat Semula Data">
+                        <button onclick="window.location.reload()"
+                            class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light"
+                            title="Muat Semula Halaman">
                             <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                         </button>
-                        <button onclick="openAccountModal()" class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light" title="Tetapan Akaun Admin">
+                        <button onclick="openAccountModal()"
+                            class="p-2 text-gray-500 hover:text-honda-red transition bg-gray-50 rounded-full hover:bg-honda-light"
+                            title="Tetapan Akaun Admin">
                             <i data-lucide="user" class="w-5 h-5"></i>
                         </button>
-                        <button onclick="logout()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-200 transition flex items-center gap-2 border border-gray-200">
+                        <button onclick="logout()"
+                            class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-200 transition flex items-center gap-2 border border-gray-200">
                             <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
                         </button>
                     </div>
@@ -132,94 +333,205 @@
         </nav>
 
         <!-- Kandungan Utama -->
-        <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-            
-            <!-- Kad Statistik -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in" style="animation-delay: 0.1s;">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-semibold text-gray-500 mb-1">Jumlah Leads Terkumpul</p>
-                        <h3 id="total-leads" class="text-3xl font-extrabold text-honda-dark">0</h3>
-                    </div>
-                    <div class="w-14 h-14 bg-honda-light rounded-full flex items-center justify-center">
-                        <i data-lucide="users" class="w-7 h-7 text-honda-red"></i>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-semibold text-gray-500 mb-1">Jumlah Hari Ini</p>
-                        <h3 id="today-leads" class="text-3xl font-extrabold text-honda-red">0</h3>
-                    </div>
-                    <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center">
-                        <i data-lucide="calendar-plus" class="w-7 h-7 text-honda-red"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-semibold text-gray-500 mb-1">Kemas Kini Terakhir</p>
-                        <h3 id="last-update" class="text-lg font-bold text-honda-dark">-</h3>
-                    </div>
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center">
-                        <i data-lucide="clock" class="w-7 h-7 text-blue-600"></i>
-                    </div>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-6 sm:mt-8 flex-1">
+            <!-- Navigasi Tab -->
+            <div class="flex gap-4 mb-6 border-b border-gray-200">
+                <button onclick="switchTab('leads')" id="tab-leads"
+                    class="pb-3 px-2 text-honda-red font-bold border-b-2 border-honda-red flex items-center gap-2 transition">
+                    <i data-lucide="table-2" class="w-5 h-5"></i> Senarai Leads
+                </button>
+                <button onclick="switchTab('sa')" id="tab-sa"
+                    class="pb-3 px-2 text-gray-500 font-medium border-b-2 border-transparent hover:text-gray-800 transition flex items-center gap-2">
+                    <i data-lucide="users" class="w-5 h-5"></i> Pengurusan SA
+                </button>
             </div>
 
-            <!-- Jadual Data -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in" style="animation-delay: 0.2s;">
-                <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <h2 class="text-lg font-bold text-honda-dark flex items-center gap-2">
-                        <i data-lucide="table-2" class="w-5 h-5 text-honda-red"></i> Senarai Prospek Pelanggan
-                    </h2>
-                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                        <!-- Kotak Carian & Butang -->
-                        <div class="flex w-full sm:w-auto gap-2">
-                            <div class="relative w-full sm:w-64">
-                                <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"></i>
-                                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nama atau no. phone..." 
-                                    class="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red transition text-sm">
-                            </div>
-                            <button onclick="filterTable()" class="bg-honda-red text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-honda-red flex items-center">
-                                Cari
-                            </button>
+            <div id="view-leads" class="mt-6">
+                <!-- Kad Statistik Premium -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
+                    <!-- Total Leads -->
+                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                        style="animation-delay:0.05s">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-honda-light to-transparent rounded-bl-full opacity-60">
                         </div>
-                        <a href="https://docs.google.com/spreadsheets/d/1Gy_eQup-LzfOngN1_zQhUyEQ2UdFyp_sGcaf1RF5zEU/edit" target="_blank" class="text-sm text-honda-red font-semibold hover:underline flex items-center gap-1 whitespace-nowrap">
-                            Buka Google Sheets <i data-lucide="external-link" class="w-4 h-4"></i>
-                        </a>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-honda-red to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-200">
+                                <i data-lucide="users" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Jumlah Leads</p>
+                        </div>
+                        <h3 id="total-leads"
+                            class="text-3xl sm:text-4xl font-extrabold text-honda-dark count-up relative z-10">0</h3>
+                        <p class="text-xs text-gray-400 mt-1">Keseluruhan rekod slot ini</p>
+                    </div>
+
+                    <!-- Leads Hari Ini -->
+                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                        style="animation-delay:0.1s">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-green-50 to-transparent rounded-bl-full opacity-60">
+                        </div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-200">
+                                <i data-lucide="calendar-check" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Hari Ini</p>
+                                <div class="pulse-dot"></div>
+                            </div>
+                        </div>
+                        <h3 id="today-leads"
+                            class="text-3xl sm:text-4xl font-extrabold gradient-text count-up relative z-10">0</h3>
+                        <p class="text-xs text-gray-400 mt-1">Leads masuk hari ini</p>
+                    </div>
+
+                    <!-- Kemas Kini Terakhir -->
+                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                        style="animation-delay:0.15s">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full opacity-60">
+                        </div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                                <i data-lucide="clock" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Kemas Kini</p>
+                        </div>
+                        <h3 id="last-update"
+                            class="text-xl sm:text-2xl font-bold text-honda-dark mt-1 count-up relative z-10">-</h3>
+                        <p class="text-xs text-gray-400 mt-1">Waktu terakhir data ditarik</p>
                     </div>
                 </div>
-                
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-gray-50 text-gray-600 text-sm border-b border-gray-200">
-                            <tr id="table-head">
-                                <th class="py-4 px-6 font-semibold whitespace-nowrap">Status</th>
-                                <th class="py-4 px-6 font-semibold whitespace-nowrap">Memuat turun data...</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body" class="text-sm text-gray-700 divide-y divide-gray-100">
-                            <tr>
-                                <td colspan="10" class="py-12 text-center">
-                                    <div class="flex flex-col items-center justify-center gap-3">
-                                        <div class="spinner"></div>
-                                        <p class="text-gray-500 font-medium">Menarik data dari Google Sheets...</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <!-- Jadual Data Premium -->
+                <div class="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100/80 overflow-hidden slide-up mb-10"
+                    style="animation-delay:0.2s">
+                    <!-- Header & Controls -->
+                    <div class="p-4 sm:p-6 border-b border-gray-100">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 bg-honda-light rounded-lg flex items-center justify-center">
+                                    <i data-lucide="table-2" class="w-4 h-4 text-honda-red"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-base font-bold text-honda-dark">Senarai Prospek</h2>
+                                    <p class="text-[11px] text-gray-400 font-medium">Data terkini dari Google Sheets</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap w-full sm:w-auto gap-2 items-center">
+                                <select id="sa-select" onchange="fetchSheetData()"
+                                    class="custom-select px-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-semibold text-gray-600 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all cursor-pointer">
+                                    <option value="1">🔴 Slot 1</option>
+                                    <option value="2">🟠 Slot 2</option>
+                                    <option value="3">🟡 Slot 3</option>
+                                    <option value="4">🟢 Slot 4</option>
+                                    <option value="5">🔵 Slot 5</option>
+                                </select>
+                                <select id="limit-select" onchange="fetchSheetData()"
+                                    class="custom-select px-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-semibold text-gray-600 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all cursor-pointer">
+                                    <option value="10">10 Baris</option>
+                                    <option value="20">20 Baris</option>
+                                    <option value="30">30 Baris</option>
+                                    <option value="40">40 Baris</option>
+                                    <option value="50">50 Baris</option>
+                                </select>
+                                <div class="relative w-full sm:w-44">
+                                    <i data-lucide="search"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400"></i>
+                                    <input type="text" id="searchInput" onkeyup="filterTable()"
+                                        placeholder="Cari prospek..."
+                                        class="w-full pl-8 pr-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-medium text-gray-700 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all placeholder:text-gray-400">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Table -->
+                    <div class="leads-table-container overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[900px]">
+                            <thead>
+                                <tr id="table-head"
+                                    class="bg-gradient-to-r from-gray-50 to-gray-50/50 text-[11px] text-gray-500 uppercase tracking-wider">
+                                    <th class="py-3.5 px-4 font-semibold whitespace-nowrap text-center w-12">#</th>
+                                    <th class="py-3.5 px-4 font-semibold whitespace-nowrap">Memuat turun...</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body" class="text-sm text-gray-700">
+                                <tr>
+                                    <td colspan="13" class="py-16 text-center">
+                                        <div class="flex flex-col items-center justify-center gap-3">
+                                            <div class="spinner"></div>
+                                            <p class="text-gray-400 font-medium text-sm">Menarik data dari Google
+                                                Sheets...</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div id="cards-container" class="leads-cards-container grid-cols-1 gap-3 p-4">
+                        <div class="flex flex-col items-center justify-center py-12 gap-3">
+                            <div class="spinner"></div>
+                            <p class="text-gray-400 font-medium text-sm">Menarik data...</p>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div
+                        class="px-4 sm:px-6 py-3 bg-gray-50/50 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-2">
+                        <p class="text-[11px] text-gray-400 font-medium" id="table-footer-info">Menunggu data...</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="pulse-dot"></div>
+                            <p class="text-[11px] text-gray-400 font-medium">Live dari Google Sheets</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End view-leads -->
+
+            <!-- Paparan Pengurusan SA -->
+            <div id="view-sa" class="hidden fade-in">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-honda-dark">Pengurusan Ejen Jualan (SA)</h2>
+                        <p class="text-sm text-gray-500 mt-1">Urus senarai SA di bawah agensi anda (Maksimum 5).
+                            Setiap
+                            SA
+                            akan mempunyai link unik.</p>
+                    </div>
+                </div>
+
+                <!-- Notifikasi Simpan -->
+                <div id="sa-save-alert"
+                    class="hidden mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                    <p class="font-medium text-sm" id="sa-save-msg">Perubahan berjaya disimpan!</p>
+                </div>
+
+                <!-- Loading Data SA -->
+                <div id="sa-loading"
+                    class="bg-white rounded-2xl p-12 shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-4 hidden">
+                    <div class="spinner"></div>
+                    <p class="text-gray-500 font-medium">Memuatkan data SA dari pelayan...</p>
+                </div>
+
+                <!-- Senarai 5 Kad SA -->
+                <div id="sa-list" class="space-y-6">
+                    <!-- Kandungan diisi melalui JavaScript -->
                 </div>
             </div>
-            
+
+        </div> <!-- End Wrapper Container Kandungan Utama -->
         </main>
-        
-        <!-- Footer Admin -->
-        <footer class="bg-white border-t border-gray-200 mt-auto">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-sm text-gray-500">
-                &copy; <span id="current-year"></span> Sistem Admin Leads Honda.
-            </div>
+
+        <!-- Footer -->
+        <footer class="mt-auto py-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 Admin Dashboard Agensi.</p>
         </footer>
     </div>
 
@@ -236,15 +548,16 @@
                 <div>
                     <h2 class="text-lg font-bold text-honda-dark">Tetapan Akaun Admin</h2>
                     <p class="text-xs text-gray-500">
-                        Username & password disimpan di browser anda (localStorage). Jika cache dibersihkan atau guna device lain, ia akan kembali ke default.
+                        Username & password disimpan dengan selamat di server awan (Cloud). Perubahan akan
+                        berkuatkuasa
+                        pada semua device.
                     </p>
                 </div>
             </div>
             <form id="credentials-form" onsubmit="changeCredentials(event)" class="space-y-4 mt-2">
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Username Baharu</label>
-                    <input type="text" id="new-username"
-                        placeholder="Biarkan kosong jika kekal sama"
+                    <input type="text" id="new-username" placeholder="Biarkan kosong jika kekal sama"
                         class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-honda-red focus:ring-1 focus:ring-honda-red text-sm">
                 </div>
                 <div>
@@ -271,66 +584,898 @@
     <script>
         // Inisialisasi ikon
         lucide.createIcons();
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
 
         // --- KONFIGURASI KESELAMATAN & DATA ---
-        const DEFAULT_ADMIN_USER = "admin";
-        const DEFAULT_ADMIN_PASS = "admin123";
+        // (Credential disemak secara langsung ke Pelayan Google / Cloud)
 
-        let currentAdminUser;
-        let currentAdminPass;
+        // --- KONFIGURASI BACKEND (Google Apps Script) ---
+        // URL Web App Apps Script anda yang baharu
+        const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPndjwl47yruOGEN23_KGL5SjH8TnOilCIgx1F-xuLwoOhAXfU4K_WkWcLJz0rW6lklA/exec";
 
-        function loadCredentials() {
-            try {
-                const storedUser = localStorage.getItem("hondaAdminUser");
-                const storedPass = localStorage.getItem("hondaAdminPass");
-                currentAdminUser = storedUser || DEFAULT_ADMIN_USER;
-                currentAdminPass = storedPass || DEFAULT_ADMIN_PASS;
-            } catch (e) {
-                // Jika localStorage tidak tersedia, guna default
-                currentAdminUser = DEFAULT_ADMIN_USER;
-                currentAdminPass = DEFAULT_ADMIN_PASS;
+        // HELPER: Convert mana-mana format Drive URL ke lh3.googleusercontent.com/d/ — format paling stabil untuk <img> embed
+        function getStableDriveUrl(origUrl) {
+            if (!origUrl) return origUrl;
+            if (origUrl.startsWith('data:')) return origUrl; // Base64 preview bypass
+
+            // Sudah format lh3 — format terbaik, guna terus
+            if (origUrl.includes('lh3.googleusercontent.com/d/')) {
+                return origUrl;
+            }
+
+            let fileId = null;
+            if (origUrl.includes('uc?export=')) {
+                const match = origUrl.match(/[?&]id=([^&]+)/);
+                if (match) fileId = match[1];
+            } else if (origUrl.includes('thumbnail?id=')) {
+                const match = origUrl.match(/id=([^&]+)/);
+                if (match) fileId = match[1];
+            } else if (origUrl.includes('drive.google.com/file/d/')) {
+                const match = origUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match) fileId = match[1];
+            }
+
+            if (fileId) {
+                return `https://lh3.googleusercontent.com/d/${fileId}`;
+            }
+            return origUrl;
+        }
+
+        // State Global SA
+        let saConfigs = [];
+        let activeSATab = 1;
+        let pendingUploads = 0; // Kaunter upload yang sedang berjalan
+
+        // Helper: kemaskini UI butang Simpan
+        function updateSaveButtonState() {
+            const btns = document.querySelectorAll('[onclick="saveAllSAConfig()"]');
+            btns.forEach(btn => {
+                if (pendingUploads > 0) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.title = 'Sila tunggu sehingga semua gambar selesai dimuat naik.';
+                } else {
+                    btn.disabled = false;
+                    btn.style.opacity = '';
+                    btn.title = '';
+                }
+            });
+        }
+
+        // --- FUNGSI TUKAR TAB SA ---
+        function switchSATab(saId) {
+            localStorage.setItem('adminActiveSATab', saId); // Simpan slot aktif
+            activeSATab = saId;
+            renderSAs();
+        }
+
+        // --- FUNGSI TAB UTAMA ---
+        function switchTab(tabId) {
+            // Simpan tab aktif supaya kekal selepas refresh
+            localStorage.setItem('adminActiveTab', tabId);
+
+            const leadsView = document.getElementById('view-leads');
+            const saView = document.getElementById('view-sa');
+            const tabLeads = document.getElementById('tab-leads');
+            const tabSA = document.getElementById('tab-sa');
+
+            if (tabId === 'leads') {
+                leadsView.classList.remove('hidden');
+                saView.classList.add('hidden');
+
+                tabLeads.className = "pb-3 px-2 text-honda-red font-bold border-b-2 border-honda-red flex items-center gap-2 transition";
+                tabSA.className = "pb-3 px-2 text-gray-500 font-medium border-b-2 border-transparent hover:text-gray-800 transition flex items-center gap-2";
+            } else {
+                leadsView.classList.add('hidden');
+                saView.classList.remove('hidden');
+                // Re-trigger fade-in animation
+                saView.style.animation = 'none';
+                saView.offsetHeight; // force reflow
+                saView.style.animation = '';
+
+                tabSA.className = "pb-3 px-2 text-honda-red font-bold border-b-2 border-honda-red flex items-center gap-2 transition";
+                tabLeads.className = "pb-3 px-2 text-gray-500 font-medium border-b-2 border-transparent hover:text-gray-800 transition flex items-center gap-2";
+
+                // Mula fetch jika belum fetch
+                if (saConfigs.length === 0) {
+                    fetchSAConfigs();
+                }
             }
         }
 
-        loadCredentials();
-        
-        // URL Google Sheets Published (Ditukar format hujungnya kepada csv untuk tarik data mudah)
-        // Link asal: https://docs.google.com/spreadsheets/d/e/2PACX-1vSY8b-yIjFG3WNM3zGnZX3vNsy7WiWRtt7sIl5LSdwjR4wjHNZoe9JDJ9R91RNu-uhS8W0Gb40kovjg/pubhtml
-        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSY8b-yIjFG3WNM3zGnZX3vNsy7WiWRtt7sIl5LSdwjR4wjHNZoe9JDJ9R91RNu-uhS8W0Gb40kovjg/pub?output=csv";
+        // --- FUNGSI PENGURUSAN SA (VENDOR) ---
+        async function fetchSAConfigs() {
+            const saList = document.getElementById('sa-list');
+            const saLoading = document.getElementById('sa-loading');
+
+            if (!APP_SCRIPT_URL.startsWith('http')) {
+                renderSAError("Sila letak URL App Script di kod source dahulu.");
+                return;
+            }
+
+            // Show loading
+            saList.innerHTML = '';
+            saLoading.classList.remove('hidden');
+
+            try {
+                const res = await fetch(APP_SCRIPT_URL);
+                const data = await res.json();
+
+                if (data.success) {
+                    saConfigs = data.data;
+                    renderSAs();
+                } else {
+                    renderSAError(data.error || "Gagal mendapatkan data SA dari pelayan.");
+                }
+            } catch (err) {
+                console.error("Ralat SA fetch:", err);
+                saList.innerHTML = `
+                    <div class="bg-amber-50 border border-amber-200 text-amber-700 p-6 rounded-2xl text-center">
+                        <i data-lucide="wifi-off" class="w-10 h-10 mx-auto mb-3"></i>
+                        <p class="font-bold mb-1">Tidak dapat menghubungi pelayan</p>
+                        <p class="text-sm text-amber-600 mb-4">${err.message || 'Sila semak sambungan internet atau URL Apps Script.'}</p>
+                        <button onclick="fetchSAConfigs()" class="px-4 py-2 bg-amber-600 text-white text-sm font-semibold rounded-lg hover:bg-amber-700 transition">
+                            Cuba Semula
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+            } finally {
+                saLoading.classList.add('hidden');
+            }
+        }
+
+        function renderSAError(msg) {
+            document.getElementById('sa-list').innerHTML = `
+                <div class="bg-red-50 border border-red-200 text-red-600 p-6 rounded-2xl text-center">
+                    <i data-lucide="alert-triangle" class="w-10 h-10 mx-auto mb-3"></i>
+                    <p class="font-bold">${msg}</p>
+                </div>
+             `;
+            lucide.createIcons();
+        }
+
+        function renderSAs() {
+            const container = document.getElementById('sa-list');
+            if (saConfigs.length === 0) return;
+
+            // Render Tabs for Slots
+            let html = '<div class="flex overflow-x-auto gap-2 mb-6 pb-2 border-b border-gray-100 no-scrollbar">';
+            saConfigs.forEach(sa => {
+                const isActive = (sa.id === activeSATab);
+                html += `
+                    <button onclick="switchSATab(${sa.id})" class="px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 flex items-center gap-2 ${isActive ? 'bg-honda-red text-white shadow-md' : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-gray-900'}">
+                        Slot ${sa.id} 
+                        ${isActive ? '<ul class="flex gap-1 ml-1"><li class="w-1.5 h-1.5 rounded-full bg-white opacity-80 animate-pulse"></li></ul>' : ''}
+                    </button>
+                `;
+            });
+            html += '</div>';
+
+            const sa = saConfigs.find(s => s.id === activeSATab);
+            if (!sa) return;
+
+            // Nota: URL gambar disimpan sebagai lh3.googleusercontent.com/d/ — guna terus tanpa convert
+
+            html += `
+                <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 sm:p-10 mb-8 transition duration-300 hover:shadow-lg relative animate-fade-in-up">
+                    <!-- Status Badge -->
+                    <div class="absolute top-6 right-6 flex items-center gap-2">
+                         <span class="text-xs font-bold text-gray-400">Slot ${sa.id}</span>
+                         <span class="px-3 py-1 rounded-full text-xs font-bold ${sa.status === 'Aktif' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${sa.status}
+                         </span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-5">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-200 text-lg sm:text-xl font-bold text-gray-400 shrink-0">
+                            ${sa.id}
+                        </div>
+                        <div class="flex-1 w-full">
+                            <h3 class="font-bold text-base sm:text-lg text-gray-900 truncate">${sa.name || 'Slot Kosong'}</h3>
+                            <div class="flex flex-wrap items-center gap-2 text-xs text-gray-500 mt-1">
+                                <span class="bg-gray-100 px-2 py-0.5 rounded font-medium">${sa.brand || 'Proton'}</span>
+                                <a href="index.html?sa=${sa.id}" target="_blank" class="text-honda-red hover:underline flex items-center gap-1 font-medium bg-red-50 px-2 py-0.5 rounded">
+                                    <i data-lucide="external-link" class="w-3 h-3"></i> Buka Pautan SA
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Seksyen 1: Asas & Header -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                <i data-lucide="layout-template" class="w-5 h-5 text-honda-red"></i> 
+                                Asas & Struktur Header
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Status Laman Web</label>
+                                    <select onchange="updateSAField(${sa.id}, 'status', this.value)" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                        <option value="Aktif" ${sa.status === 'Aktif' ? 'selected' : ''}>Aktif</option>
+                                        <option value="Disekat" ${sa.status !== 'Aktif' ? 'selected' : ''}>Disekat</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Jenama Kenderaan</label>
+                                    <select onchange="updateSAField(${sa.id}, 'brand', this.value)" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                        <option value="Proton" ${sa.brand === 'Proton' ? 'selected' : ''}>Proton</option>
+                                        <option value="Perodua" ${sa.brand === 'Perodua' ? 'selected' : ''}>Perodua</option>
+                                        <option value="Honda" ${sa.brand === 'Honda' ? 'selected' : ''}>Honda</option>
+                                        <option value="Toyota" ${sa.brand === 'Toyota' ? 'selected' : ''}>Toyota</option>
+                                        <option value="BYD" ${sa.brand === 'BYD' ? 'selected' : ''}>BYD</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Nama Penuh SA</label>
+                                    <input type="text" onchange="updateSAField(${sa.id}, 'name', this.value)" value="${sa.name || ''}" placeholder="Cth: Muiz Nazmi" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">No. Telefon WhatsApp</label>
+                                    <input type="text" onchange="updateSAField(${sa.id}, 'phone', this.value)" value="${sa.phone || ''}" placeholder="Cth: 60123456789" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Info SA (Atas Kanan)</label>
+                                    <input type="text" onchange="updateSAField(${sa.id}, 'infoSA', this.value)" value="${sa.infoSA || ''}" placeholder="Cth: Penasihat Jualan Sah Proton" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                </div>
+                                <!-- Avatar Header -->
+                                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm md:col-span-2">
+                                    <label class="block text-xs font-bold text-gray-700 mb-2">Upload Logo SA (Header)</label>
+                                    <div class="flex flex-col sm:flex-row gap-2">
+                                        <label class="w-full sm:w-auto bg-honda-dark text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-800 cursor-pointer flex items-center justify-center shrink-0 transition">
+                                            <i data-lucide="upload-cloud" class="w-4 h-4 mr-2"></i> Muat Naik Logo
+                                            <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, ${sa.id}, 'logoImage')">
+                                        </label>
+                                    </div>
+                                    <div class="mt-2 text-xs text-honda-red hidden font-medium" id="upload-status-logoImage-${sa.id}">Memuat naik...</div>
+                                    <div class="mt-3" id="preview-logoImage-${sa.id}">
+                                        ${sa.logoImage ? `<img src="${getStableDriveUrl(sa.logoImage)}" class="w-12 h-12 object-cover rounded-full border border-gray-200 shadow-sm" onerror="this.src=''; this.alt='Gambar Ralat'">` : '<div class="w-12 h-12 rounded-full border-2 border-dashed border-gray-200 flex items-center justify-center text-[10px] text-gray-400">Tiada Logo</div>'}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seksyen 2: Hero Section -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                <i data-lucide="megaphone" class="w-5 h-5 text-honda-red"></i> 
+                                Banner Promosi (Hero Section)
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Promo Ekoran (Badge Merah)</label>
+                                    <input type="text" onchange="updateSAField(${sa.id}, 'promo', this.value)" value="${sa.promo || ''}" placeholder="Cth: Promosi Eksklusif Ekstra Penjimatan!" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Tajuk Hero Besar</label>
+                                    <input type="text" onchange="updateSAField(${sa.id}, 'heroTitle', this.value)" value="${sa.heroTitle || ''}" placeholder="Cth: Miliki Kereta Idaman Anda Hari Ini." class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Subtajuk (Penerangan Panjang)</label>
+                                    <textarea rows="3" onchange="updateSAField(${sa.id}, 'heroSubtitle', this.value)" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">${sa.heroSubtitle || ''}</textarea>
+                                </div>
+                                <!-- Avatar Hero -->
+                                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                                    <label class="block text-xs font-bold text-gray-700 mb-2">Upload Gambar Hero/Banner</label>
+                                    <div class="flex flex-col sm:flex-row gap-2">
+                                        <label class="w-full sm:w-auto bg-honda-dark text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-800 cursor-pointer flex items-center justify-center shrink-0 transition">
+                                            <i data-lucide="upload-cloud" class="w-4 h-4 mr-2"></i> Muat Naik Banner
+                                            <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, ${sa.id}, 'heroImage')">
+                                        </label>
+                                    </div>
+                                    <div class="mt-2 text-xs text-honda-red hidden font-medium" id="upload-status-heroImage-${sa.id}">Memuat naik...</div>
+                                    <div class="mt-3" id="preview-heroImage-${sa.id}">
+                                        ${sa.heroImage ? `<img src="${getStableDriveUrl(sa.heroImage)}" class="w-full h-32 object-cover rounded-xl border border-gray-200 shadow-sm" onerror="this.src=''; this.alt='Gambar Ralat'">` : '<div class="w-full h-32 border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center text-xs text-gray-400">Tiada Gambar Banner</div>'}
+                                    </div>
+                                </div>
+                        <!-- Seksyen 3: Model Kenderaan & Kalkulator -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                <h4 class="font-bold text-gray-900 flex items-center gap-2">
+                                    <i data-lucide="car-front" class="w-5 h-5 text-honda-red"></i> 
+                                    Pilihan Model & Varian (Kalkulator)
+                                </h4>
+                                <button onclick="addModel(${sa.id})" class="text-xs bg-gray-900 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-800 transition flex items-center gap-2">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah Model
+                                </button>
+                            </div>
+
+                            <div class="space-y-6">
+                                ${(sa.models && sa.models.length > 0) ? sa.models.map((model, mIndex) => `
+                                    <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm relative group">
+                                        <button onclick="removeModel(${sa.id}, ${mIndex})" class="absolute -top-3 -right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Buang Model">
+                                            <i data-lucide="x" class="w-4 h-4"></i>
+                                        </button>
+                                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 mb-4">
+                                            <div class="sm:col-span-3">
+                                                <div class="h-20 w-full bg-gray-50 rounded-lg border border-gray-200 flex flex-col items-center justify-center overflow-hidden relative group/img">
+                                                    ${model.image ? `<img src="${getStableDriveUrl(model.image)}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div style="display:none" class="absolute inset-0 flex flex-col items-center justify-center text-[10px] text-gray-400"><i data-lucide='image-off' class='w-5 h-5 mb-1 text-gray-300'></i>Hover untuk tukar</div>` : '<i data-lucide="image" class="w-6 h-6 text-gray-300 mb-1"></i><span class="text-[10px] text-gray-400">Tiada Gambar</span>'}
+                                                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                                        <label class="cursor-pointer text-white text-[10px] font-bold flex flex-col items-center">
+                                                            <i data-lucide="upload" class="w-4 h-4 mb-1"></i> Tukar
+                                                            <input type="file" accept="image/*" class="hidden" onchange="handleModelImageUpload(event, ${sa.id}, ${mIndex})">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="text-[10px] text-center text-honda-red mt-1 hidden font-bold" id="upload-model-status-${sa.id}-${mIndex}">Memuat naik...</div>
+                                            </div>
+                                            <div class="sm:col-span-5">
+                                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Model</label>
+                                                <input type="text" onchange="updateModelField(${sa.id}, ${mIndex}, 'name', this.value)" value="${model.name || ''}" placeholder="Cth: X50" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm font-bold text-gray-900 focus:border-honda-red focus:bg-white transition outline-none">
+                                            </div>
+                                            <div class="sm:col-span-4">
+                                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Kategori</label>
+                                                <select onchange="updateModelField(${sa.id}, ${mIndex}, 'category', this.value)" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 focus:border-honda-red focus:bg-white transition outline-none">
+                                                    <option value="" ${!model.category ? 'selected' : ''}>Pilih Kategori</option>
+                                                    <option value="Sedan" ${model.category === 'Sedan' ? 'selected' : ''}>Sedan</option>
+                                                    <option value="Hatchback" ${model.category === 'Hatchback' ? 'selected' : ''}>Hatchback</option>
+                                                    <option value="SUV" ${model.category === 'SUV' ? 'selected' : ''}>SUV</option>
+                                                    <option value="MPV" ${model.category === 'MPV' ? 'selected' : ''}>MPV</option>
+                                                    <option value="Trak" ${model.category === 'Trak' ? 'selected' : ''}>Trak (4x4)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Varian List -->
+                                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                                            <div class="flex justify-between items-center mb-3">
+                                                <h5 class="text-xs font-bold text-gray-700">Senarai Varian & Harga</h5>
+                                                <button onclick="addVariant(${sa.id}, ${mIndex})" class="text-[10px] text-honda-red font-bold hover:underline flex items-center gap-1">
+                                                    <i data-lucide="plus-circle" class="w-3 h-3"></i> Tambah Varian
+                                                </button>
+                                            </div>
+                                            <div class="space-y-2">
+                                                ${(model.variants && model.variants.length > 0) ? model.variants.map((v, vIndex) => `
+                                                    <div class="flex flex-col sm:flex-row items-center gap-2">
+                                                        <div class="flex-1 w-full">
+                                                            <input type="text" onchange="updateVariantField(${sa.id}, ${mIndex}, ${vIndex}, 'name', this.value)" value="${v.name || ''}" placeholder="Cth: 1.5T Standard" class="w-full px-2.5 py-1.5 bg-white border border-gray-200 rounded text-xs focus:border-honda-red outline-none">
+                                                        </div>
+                                                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                                                            <div class="relative w-full sm:w-32">
+                                                                <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-bold">RM</span>
+                                                                <input type="number" onchange="updateVariantField(${sa.id}, ${mIndex}, ${vIndex}, 'price', this.value)" value="${v.price || ''}" placeholder="86300" class="w-full pl-8 pr-2.5 py-1.5 bg-white border border-gray-200 rounded text-xs font-medium focus:border-honda-red outline-none">
+                                                            </div>
+                                                            <button onclick="removeVariant(${sa.id}, ${mIndex}, ${vIndex})" class="text-gray-400 hover:text-red-500 p-1 transition" title="Buang Varian">
+                                                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                `).join('') : '<p class="text-[10px] text-gray-400 italic">Tiada varian ditambah. Sila tambah varian untuk membolehkan pengiraan bulanan.</p>'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('') : `
+                                    <div class="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-10 text-center">
+                                        <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <i data-lucide="car" class="w-6 h-6 text-gray-400"></i>
+                                        </div>
+                                        <h5 class="text-sm font-bold text-gray-900 mb-1">Tiada Model Kenderaan</h5>
+                                        <p class="text-xs text-gray-500 mb-4">Sila tambah model untuk memaparkan kalkulator di profil SA ini.</p>
+                                        <button onclick="addModel(${sa.id})" class="text-xs bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-50 transition shadow-sm inline-flex items-center gap-2">
+                                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Mula Tambah Model
+                                        </button>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- Seksyen 4: Tentang Saya -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                <i data-lucide="user" class="w-5 h-5 text-honda-red"></i> 
+                                Tentang Saya & Maklumat Tambahan
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Kolum 1 -->
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 mb-1">Karangan "Tentang Saya"</label>
+                                        <textarea rows="5" onchange="updateSAField(${sa.id}, 'aboutText', this.value)" placeholder="Saya merupakan Penasihat Jualan..." class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">${sa.aboutText || ''}</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 mb-1">Hashtag Promosi</label>
+                                        <input type="text" onchange="updateSAField(${sa.id}, 'hashtags', this.value)" value="${sa.hashtags || ''}" placeholder="#OnlineBooking #SalesAdvisor" class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">
+                                    </div>
+                                    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                                        <label class="block text-xs font-bold text-gray-700 mb-2">Upload Gambar Profil (Petak)</label>
+                                        <div class="flex flex-col sm:flex-row gap-2">
+                                            <label class="w-full sm:w-auto bg-honda-dark text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-800 cursor-pointer flex items-center justify-center shrink-0 transition">
+                                                <i data-lucide="upload-cloud" class="w-4 h-4 mr-2"></i> Muat Naik Profil
+                                                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, ${sa.id}, 'profileImage')">
+                                            </label>
+                                        </div>
+                                        <div class="mt-2 text-xs text-honda-red hidden font-medium" id="upload-status-profileImage-${sa.id}">Memuat naik...</div>
+                                        <div class="mt-3" id="preview-profileImage-${sa.id}">
+                                            ${sa.profileImage ? `<img src="${getStableDriveUrl(sa.profileImage)}" class="w-20 h-20 object-cover rounded-xl border border-gray-200 shadow-sm" onerror="this.src=''; this.alt='Gambar Ralat'">` : '<div class="w-20 h-20 border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center text-[10px] text-gray-400">Tiada Gambar</div>'}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Kolum 2: Kotak Serlahan 4 Item -->
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-3">4 Kotak Serlahan (Highlight)</label>
+                                    <div class="space-y-3">
+                                        ${(() => {
+                    if (!sa.aboutPoints || sa.aboutPoints.length !== 4) {
+                        sa.aboutPoints = [{}, {}, {}, {}];
+                    }
+                    return sa.aboutPoints.map((point, pIdx) => `
+                                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-start gap-3">
+                                                    <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0 text-honda-red">
+                                                        <span class="font-bold text-xs">${pIdx + 1}</span>
+                                                    </div>
+                                                    <div class="flex-1 space-y-2">
+                                                        <input type="text" onchange="updateAboutPoint(${sa.id}, ${pIdx}, 'title', this.value)" value="${point.title || ''}" placeholder="Tajuk. Cth: TestDrive Bersemuka" class="w-full px-2 py-1.5 bg-gray-50 border border-transparent rounded text-xs font-bold focus:border-honda-red focus:bg-white outline-none">
+                                                        <input type="text" onchange="updateAboutPoint(${sa.id}, ${pIdx}, 'subtitle', this.value)" value="${point.subtitle || ''}" placeholder="Subtajuk. Cth: Pilih masa lapang" class="w-full px-2 py-1 bg-gray-50 border border-transparent rounded text-[10px] text-gray-500 focus:border-honda-red focus:bg-white outline-none">
+                                                    </div>
+                                                </div>
+                                            `).join('');
+                })()}
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Seksyen 5: Ulasan & Testimoni -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                <h4 class="font-bold text-gray-900 flex items-center gap-2">
+                                    <i data-lucide="message-square" class="w-5 h-5 text-honda-red"></i> 
+                                    Ulasan & Testimoni
+                                </h4>
+                                <button onclick="addTestimonial(${sa.id})" class="text-xs bg-gray-900 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-800 transition flex items-center gap-2">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah Testimoni
+                                </button>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${(sa.testimonials && sa.testimonials.length > 0) ? sa.testimonials.map((testi, tIdx) => `
+                                    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm relative group">
+                                        <button onclick="removeTestimonial(${sa.id}, ${tIdx})" class="absolute -top-3 -right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Buang Testimoni">
+                                            <i data-lucide="x" class="w-4 h-4"></i>
+                                        </button>
+                                        <div class="flex gap-4">
+                                            <div class="w-1/3">
+                                                <div class="h-24 w-full bg-gray-50 rounded-lg border border-gray-200 flex flex-col items-center justify-center overflow-hidden relative group/img">
+                                                    ${testi.image ? `<img src="${getStableDriveUrl(testi.image)}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div style="display:none" class="absolute inset-0 flex flex-col items-center justify-center text-[9px] text-gray-400"><i data-lucide='image-off' class='w-4 h-4 mb-1 text-gray-300'></i>Gagal Load</div>` : '<i data-lucide="image" class="w-5 h-5 text-gray-300 mb-1"></i><span class="text-[9px] text-gray-400">Gambar Serahan</span>'}
+                                                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                                        <label class="cursor-pointer text-white text-[10px] font-bold flex flex-col items-center">
+                                                            <i data-lucide="upload" class="w-4 h-4 mb-1"></i> Upload
+                                                            <input type="file" accept="image/*" class="hidden" onchange="handleTestimonialImageUpload(event, ${sa.id}, ${tIdx})">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="text-[9px] text-center text-honda-red mt-1 hidden font-bold" id="upload-testi-status-${sa.id}-${tIdx}">Uploading...</div>
+                                            </div>
+                                            <div class="w-2/3 space-y-2">
+                                                <input type="text" onchange="updateTestimonialField(${sa.id}, ${tIdx}, 'name', this.value)" value="${testi.name || ''}" placeholder="Nama Pelanggan" class="w-full px-2 py-1.5 bg-gray-50 border border-transparent rounded text-xs font-bold focus:border-honda-red focus:bg-white outline-none">
+                                                <input type="text" onchange="updateTestimonialField(${sa.id}, ${tIdx}, 'product', this.value)" value="${testi.product || ''}" placeholder="Produk (Cth: X50 Flagship)" class="w-full px-2 py-1.5 bg-gray-50 border border-transparent rounded text-[10px] text-gray-500 font-medium focus:border-honda-red focus:bg-white outline-none">
+                                                <textarea rows="2" onchange="updateTestimonialField(${sa.id}, ${tIdx}, 'feedback', this.value)" placeholder="Ayat Feedback Pendek..." class="w-full px-2 py-1.5 bg-gray-50 border border-transparent rounded text-[10px] text-gray-700 focus:border-honda-red focus:bg-white outline-none leading-tight">${testi.feedback || ''}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('') : '<div class="col-span-full text-center py-6 border-2 border-dashed border-gray-200 rounded-xl text-xs text-gray-400">Belum ada sebarang testimoni diletakkan. Tambah testimoni pertama anda.</div>'}
+                            </div>
+                        </div>
+
+                        <!-- Seksyen 6: Footer & Kenalan -->
+                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                                <i data-lucide="sidebar-open" class="w-5 h-5 text-honda-red rotate-90"></i> 
+                                Footer Bawah & Pautan Kenalan
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Teks Pengenalan Bawah (Description)</label>
+                                    <textarea rows="4" onchange="updateSAField(${sa.id}, 'footerDescription', this.value)" placeholder="Pakar perunding jualan automotif anda..." class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-honda-red outline-none shadow-sm">${sa.footerDescription || ''}</textarea>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <label class="block text-xs font-bold text-gray-700">Hubungi Saya (Pautan Bawah)</label>
+                                        <button onclick="addContactLink(${sa.id})" class="text-[10px] text-honda-red font-bold hover:underline flex items-center gap-1">
+                                            <i data-lucide="plus-circle" class="w-3 h-3"></i> Tambah Pautan / No
+                                        </button>
+                                    </div>
+                                    <div class="space-y-2">
+                                        ${(sa.contactLinks && sa.contactLinks.length > 0) ? sa.contactLinks.map((contact, cIdx) => `
+                                            <div class="flex flex-col sm:flex-row items-center gap-2 bg-gray-50 p-2 rounded">
+                                                <input type="text" onchange="updateContactLink(${sa.id}, ${cIdx}, 'label', this.value)" value="${contact.label || ''}" placeholder="Cth: Facebook" class="w-full sm:w-1/3 px-2 py-1.5 bg-white border border-gray-200 rounded text-xs font-bold focus:border-honda-red outline-none">
+                                                <div class="flex-1 flex gap-2 w-full">
+                                                    <input type="text" onchange="updateContactLink(${sa.id}, ${cIdx}, 'value', this.value)" value="${contact.value || ''}" placeholder="Cth: fb.com/nama-anda" class="w-full px-2 py-1.5 bg-white border border-gray-200 rounded text-xs font-medium focus:border-honda-red outline-none">
+                                                    <button onclick="removeContactLink(${sa.id}, ${cIdx})" class="text-gray-400 hover:text-red-500 p-1 transition shrink-0" title="Buang Pautan">
+                                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        `).join('') : '<p class="text-[10px] text-gray-400 italic mb-2">Tiada pautan ditambah.</p>'}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Simpan utk ID ini -->
+                    <div class="mt-8 flex justify-end">
+                         <button onclick="saveAllSAConfig()" class="w-full sm:w-auto bg-honda-red hover:bg-red-700 text-white px-8 py-3.5 sm:py-3 rounded-xl text-sm font-bold flex justify-center items-center gap-2 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                             <i data-lucide="save" class="w-5 h-5"></i> Simpan Maklumat Slot ${sa.id}
+                         </button>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+            lucide.createIcons(); // Re-init icons for the newly rendered HTML
+        }
+
+        function updateSAField(id, field, value) {
+            const index = saConfigs.findIndex(s => s.id === id);
+            if (index !== -1) {
+                saConfigs[index][field] = value;
+            }
+        }
+
+        // --- PENGURUSAN MODEL & VARIAN ---
+        function getSA(id) { return saConfigs.find(s => s.id === id); }
+
+        function addModel(saId) {
+            const sa = getSA(saId);
+            if (!sa) return;
+            if (!sa.models) sa.models = [];
+            sa.models.push({ name: '', category: '', image: '', variants: [] });
+            renderSAs();
+        }
+
+        function removeModel(saId, mIndex) {
+            if (confirm('Adakah anda pasti mahu memadam model ini?')) {
+                const sa = getSA(saId);
+                sa.models.splice(mIndex, 1);
+                renderSAs();
+            }
+        }
+
+        function updateModelField(saId, mIndex, field, value) {
+            getSA(saId).models[mIndex][field] = value;
+        }
+
+        function addVariant(saId, mIndex) {
+            const sa = getSA(saId);
+            if (!sa.models[mIndex].variants) sa.models[mIndex].variants = [];
+            sa.models[mIndex].variants.push({ name: '', price: '' });
+            renderSAs();
+        }
+
+        function removeVariant(saId, mIndex, vIndex) {
+            getSA(saId).models[mIndex].variants.splice(vIndex, 1);
+            renderSAs();
+        }
+
+        function updateVariantField(saId, mIndex, vIndex, field, value) {
+            getSA(saId).models[mIndex].variants[vIndex][field] = value;
+        }
+
+        async function handleModelImageUpload(e, saId, mIndex) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            pendingUploads++;
+            updateSaveButtonState();
+
+            const reader = new FileReader();
+            reader.onload = async function () {
+                const base64Data = reader.result;
+
+                // PREVIEW SEGERA via base64 (sama seperti handleImageUpload)
+                getSA(saId).models[mIndex].image = base64Data;
+                renderSAs();
+
+                // Cari semula statusId kerana DOM sudah di-refresh oleh renderSAs
+                const statusEl = document.getElementById(`upload-model-status-${saId}-${mIndex}`);
+                if (statusEl) {
+                    statusEl.classList.remove('hidden');
+                    statusEl.textContent = 'Memuat naik ke Cloud...';
+                }
+
+                try {
+                    const response = await fetch(APP_SCRIPT_URL, {
+                        method: 'POST',
+                        redirect: 'follow',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({
+                            action: 'uploadImage',
+                            saId: saId,
+                            fileData: base64Data,
+                            fileName: `SA${saId}_Model${mIndex}_${Date.now()}_${file.name}`,
+                            mimeType: file.type
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        // Simpan Drive URL dalam state (untuk simpanan kekal apabila Save)
+                        // JANGAN panggil renderSAs() — biarkan base64 preview kekal kelihatan
+                        getSA(saId).models[mIndex].image = result.fileUrl;
+                    } else {
+                        alert("Ralat muat naik gambar model.");
+                    }
+                } catch (err) {
+                    alert("Ralat sambungan gambar model.");
+                } finally {
+                    pendingUploads = Math.max(0, pendingUploads - 1);
+                    updateSaveButtonState();
+                    const finalStatusEl = document.getElementById(`upload-model-status-${saId}-${mIndex}`);
+                    if (finalStatusEl) finalStatusEl.classList.add('hidden');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // --- PENGURUSAN TENTANG SAYA & TESTIMONI ---
+        function updateAboutPoint(saId, pIdx, field, value) {
+            getSA(saId).aboutPoints[pIdx][field] = value;
+        }
+
+        function addTestimonial(saId) {
+            const sa = getSA(saId);
+            if (!sa.testimonials) sa.testimonials = [];
+            sa.testimonials.push({ image: '', name: '', product: '', feedback: '' });
+            renderSAs();
+        }
+
+        function removeTestimonial(saId, tIdx) {
+            if (confirm('Padam testimoni ini?')) {
+                getSA(saId).testimonials.splice(tIdx, 1);
+                renderSAs();
+            }
+        }
+
+        function updateTestimonialField(saId, tIdx, field, value) {
+            getSA(saId).testimonials[tIdx][field] = value;
+        }
+
+        async function handleTestimonialImageUpload(e, saId, tIdx) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const statusId = document.getElementById(`upload-testi-status-${saId}-${tIdx}`);
+            statusId.classList.remove('hidden');
+
+            const reader = new FileReader();
+            reader.onload = async function () {
+                const base64Data = reader.result;
+                try {
+                    const response = await fetch(APP_SCRIPT_URL, {
+                        method: 'POST',
+                        redirect: 'follow',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                        body: JSON.stringify({
+                            action: 'uploadImage',
+                            saId: saId,
+                            fileData: base64Data,
+                            fileName: `SA${saId}_Testi${tIdx}_${Date.now()}_${file.name}`,
+                            mimeType: file.type
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        getSA(saId).testimonials[tIdx].image = result.fileUrl;
+                        renderSAs();
+                    } else {
+                        alert("Ralat muat naik gambar testimoni.");
+                    }
+                } catch (err) {
+                    alert("Ralat sambungan muat naik.");
+                } finally {
+                    statusId.classList.add('hidden');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // --- PENGURUSAN KENALAN ---
+        function addContactLink(saId) {
+            const sa = getSA(saId);
+            if (!sa.contactLinks) sa.contactLinks = [];
+            sa.contactLinks.push({ label: '', value: '' });
+            renderSAs();
+        }
+
+        function removeContactLink(saId, cIdx) {
+            getSA(saId).contactLinks.splice(cIdx, 1);
+            renderSAs();
+        }
+
+        function updateContactLink(saId, cIdx, field, value) {
+            getSA(saId).contactLinks[cIdx][field] = value;
+        }
+
+        async function handleImageUpload(e, saId, field) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const statusId = document.getElementById(`upload-status-${field}-${saId}`);
+            statusId.classList.remove('hidden');
+            statusId.textContent = "Memuat naik...";
+            statusId.classList.remove('text-green-600');
+            statusId.classList.add('text-honda-red');
+
+            pendingUploads++;
+            updateSaveButtonState();
+
+            const reader = new FileReader();
+            reader.onload = async function () {
+                const base64Data = reader.result;
+
+                // PREVIEW SEGERA TAHAP STATE
+                updateSAField(saId, field, base64Data);
+                renderSAs();
+
+                const newStatusId = document.getElementById(`upload-status-${field}-${saId}`);
+                if (newStatusId) {
+                    newStatusId.classList.remove('hidden');
+                    newStatusId.textContent = "Memuat naik ke Cloud...";
+                    newStatusId.classList.remove('text-green-600');
+                    newStatusId.classList.add('text-honda-red');
+                }
+
+                try {
+                    const response = await fetch(APP_SCRIPT_URL, {
+                        method: 'POST',
+                        redirect: 'follow',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                        body: JSON.stringify({
+                            action: 'uploadImage',
+                            saId: saId,
+                            fileData: base64Data,
+                            fileName: `SA${saId}_${field}_${Date.now()}_${file.name}`,
+                            mimeType: file.type
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        updateSAField(saId, field, result.fileUrl);
+                        if (newStatusId) {
+                            newStatusId.textContent = "Berjaya dimuat naik!";
+                            newStatusId.classList.replace('text-honda-red', 'text-green-600');
+                        }
+                        setTimeout(() => {
+                            if (newStatusId) newStatusId.classList.add('hidden');
+                        }, 3000);
+                    } else {
+                        throw new Error(result.error || "Ralat muat naik");
+                    }
+                } catch (err) {
+                    if (newStatusId) newStatusId.textContent = "Gagal memuat naik. Sila cuba lagi.";
+                    console.error(err);
+                } finally {
+                    pendingUploads = Math.max(0, pendingUploads - 1);
+                    updateSaveButtonState();
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveAllSAConfig() {
+            // Semak jika masih ada upload yang berjalan
+            if (pendingUploads > 0) {
+                alert(`Sila tunggu! Masih ada ${pendingUploads} gambar yang sedang dimuat naik ke Cloud. Cuba simpan semula selepas selesai.`);
+                return;
+            }
+
+            document.body.style.cursor = 'wait';
+            const alertBox = document.getElementById('sa-save-alert');
+            alertBox.classList.add('hidden');
+
+            try {
+                const payload = JSON.parse(JSON.stringify(saConfigs));
+                payload.forEach(sa => {
+                    // Strip base64 data (perisai keselamatan jika terlepas pandang)
+                    const imageFields = ['logoImage', 'heroImage', 'profileImage'];
+                    imageFields.forEach(f => {
+                        if (sa[f] && sa[f].startsWith('data:')) sa[f] = '';
+                    });
+                    if (sa.models) {
+                        sa.models = sa.models.filter(m => m.name.trim() !== '');
+                        sa.models.forEach(m => {
+                            if (m.image && m.image.startsWith('data:')) m.image = '';
+                            if (m.variants) {
+                                m.variants = m.variants.filter(v => v.name.trim() !== '' && v.price !== '');
+                            }
+                        });
+                    }
+                    if (sa.testimonials) {
+                        sa.testimonials = sa.testimonials.filter(t => t.feedback.trim() !== '' || t.name.trim() !== '');
+                        sa.testimonials.forEach(t => {
+                            if (t.image && t.image.startsWith('data:')) t.image = '';
+                        });
+                    }
+                    if (sa.contactLinks) {
+                        sa.contactLinks = sa.contactLinks.filter(c => c.label.trim() !== '' && c.value.trim() !== '');
+                    }
+                });
+
+                const response = await fetch(APP_SCRIPT_URL, {
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify({
+                        action: 'saveConfig',
+                        configs: payload
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alertBox.classList.remove('hidden');
+                    alertBox.querySelector('p').textContent = "✅ Konfigurasi berjaya disimpan di Cloud!";
+                    document.documentElement.scrollTop = 0;
+                    setTimeout(() => alertBox.classList.add('hidden'), 4000);
+                } else {
+                    alert("Gagal simpan: " + (result.error || "Ralat."));
+                }
+            } catch (err) {
+                alert("Bermasalah menghubungi pelayan. Sila cuba lagi.");
+                console.error(err);
+            } finally {
+                document.body.style.cursor = 'default';
+            }
+        }
 
         // --- FUNGSI LOG MASUK ---
-        function handleLogin(event) {
+        async function handleLogin(event) {
             event.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const errorMsg = document.getElementById('login-error');
 
-            if (user === currentAdminUser && pass === currentAdminPass) {
-                // Berjaya
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('dashboard-screen').classList.remove('hidden');
-                
-                // Mula tarik data sebaik sahaja login berjaya
+            // BYPASS LOGIN
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.remove('hidden');
+            localStorage.setItem("adminSessionTime", Date.now().toString());
+            startSessionTimer();
+
+            // Pulihkan slot SA dan tab utama
+            activeSATab = parseInt(localStorage.getItem('adminActiveSATab') || '1');
+            const savedTab = localStorage.getItem('adminActiveTab') || 'leads';
+            switchTab(savedTab);
+
+            if (savedTab === 'leads') {
                 fetchSheetData();
-            } else {
-                // Gagal
-                errorMsg.classList.remove('hidden');
-                // Goncang form sedikit (efek visual)
-                const formBox = errorMsg.parentElement.parentElement;
-                formBox.style.transform = "translateX(10px)";
-                setTimeout(() => formBox.style.transform = "translateX(-10px)", 100);
-                setTimeout(() => formBox.style.transform = "translateX(0)", 200);
             }
+        }
+
+        var sessionInterval;
+        var SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 3 minit
+
+        function startSessionTimer() {
+            if (sessionInterval) clearInterval(sessionInterval);
+            sessionInterval = setInterval(() => {
+                const loginTime = localStorage.getItem("adminSessionTime");
+                if (!loginTime) return;
+
+                const timePassed = Date.now() - parseInt(loginTime);
+                if (timePassed > SESSION_TIMEOUT_MS) {
+                    alert("Sesi anda telah tamat selepas 3 minit. Sila log masuk semula.");
+                    logout();
+                }
+            }, 60000); // Semak setiap 1 minit
         }
 
         function logout() {
             document.getElementById('username').value = "";
             document.getElementById('password').value = "";
             document.getElementById('login-error').classList.add('hidden');
-            
+
+            // Tutup modal akaun jika sedang terbuka
+            closeAccountModal();
+
             document.getElementById('dashboard-screen').classList.add('hidden');
             document.getElementById('login-screen').classList.remove('hidden');
+
+            localStorage.removeItem("adminSessionTime");
+            if (sessionInterval) clearInterval(sessionInterval);
         }
 
         // --- MODAL TETAPAN AKAUN ---
@@ -362,6 +1507,7 @@
             const oldPasswordInput = document.getElementById('old-password');
             const newPasswordInput = document.getElementById('new-password');
             const statusEl = document.getElementById('credentials-status');
+            const submitBtn = event.target.querySelector('button[type="submit"]');
 
             const oldPass = oldPasswordInput.value.trim();
             const newUser = newUsernameInput.value.trim();
@@ -369,7 +1515,7 @@
 
             statusEl.classList.remove('text-red-500', 'text-green-500');
             statusEl.classList.add('text-gray-500');
-            statusEl.textContent = "Menyemak maklumat...";
+            statusEl.textContent = "Menyemak maklumat dengan pelayan...";
 
             if (!oldPass || !newPass) {
                 statusEl.classList.remove('text-gray-500');
@@ -378,34 +1524,45 @@
                 return;
             }
 
-            if (oldPass !== currentAdminPass) {
-                statusEl.classList.remove('text-gray-500');
-                statusEl.classList.add('text-red-500');
-                statusEl.textContent = "Password lama tidak tepat.";
-                return;
-            }
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Menyimpan...';
 
-            try {
-                if (newUser) {
-                    localStorage.setItem("hondaAdminUser", newUser);
-                    currentAdminUser = newUser;
-                }
-                localStorage.setItem("hondaAdminPass", newPass);
-                currentAdminPass = newPass;
+            fetch(APP_SCRIPT_URL, {
+                method: 'POST',
+                redirect: 'follow',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    action: 'updateCredentials',
+                    oldPassword: oldPass,
+                    newUsername: newUser || '',
+                    newPassword: newPass
+                })
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        statusEl.classList.remove('text-gray-500');
+                        statusEl.classList.add('text-green-500');
+                        statusEl.textContent = "Berjaya! Username/password telah dikemas kini. Sila ingat maklumat baharu anda.";
 
-                statusEl.classList.remove('text-gray-500');
-                statusEl.classList.add('text-green-500');
-                statusEl.textContent = "Berjaya! Username/password telah dikemas kini. Sila ingat maklumat baharu anda.";
-
-                oldPasswordInput.value = "";
-                newPasswordInput.value = "";
-                // Username baharu dibiarkan supaya admin nampak apa yang telah ditetapkan
-            } catch (e) {
-                console.error(e);
-                statusEl.classList.remove('text-gray-500');
-                statusEl.classList.add('text-red-500');
-                statusEl.textContent = "Ralat: browser tidak membenarkan simpan tetapan. Sila cuba browser lain.";
-            }
+                        oldPasswordInput.value = "";
+                        newPasswordInput.value = "";
+                    } else {
+                        throw new Error(result.message || "Ralat menukar kata laluan");
+                    }
+                })
+                .catch(e => {
+                    console.error(e);
+                    statusEl.classList.remove('text-gray-500');
+                    statusEl.classList.add('text-red-500');
+                    statusEl.textContent = e.message === "Password lama tidak tepat" ? e.message : "Ralat pelayan. Gagal menukar kata laluan.";
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Simpan Perubahan';
+                });
         }
 
         // --- FUNGSI TARIK DATA (CSV PARSER) ---
@@ -414,17 +1571,17 @@
             const arr = [];
             let quote = false;
             for (let row = 0, col = 0, c = 0; c < str.length; c++) {
-                let cc = str[c], nc = str[c+1];
+                let cc = str[c], nc = str[c + 1];
                 arr[row] = arr[row] || [];
                 arr[row][col] = arr[row][col] || '';
-                
+
                 if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
                 if (cc == '"') { quote = !quote; continue; }
                 if (cc == ',' && !quote) { ++col; continue; }
                 if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
                 if (cc == '\n' && !quote) { ++row; col = 0; continue; }
                 if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-                
+
                 arr[row][col] += cc;
             }
             return arr;
@@ -436,6 +1593,10 @@
             const totalText = document.getElementById('total-leads');
             const timeText = document.getElementById('last-update');
             const todayText = document.getElementById('today-leads');
+            const saSelectElem = document.getElementById('sa-select');
+            const saId = saSelectElem ? parseInt(saSelectElem.value) : 1;
+            const limitStr = document.getElementById('limit-select') ? document.getElementById('limit-select').value : '10';
+            const limit = parseInt(limitStr) || 10;
 
             // Tunjuk loading
             tbody.innerHTML = `
@@ -443,99 +1604,189 @@
                     <td colspan="10" class="py-12 text-center">
                         <div class="flex flex-col items-center justify-center gap-3">
                             <div class="spinner"></div>
-                            <p class="text-gray-500 font-medium">Menarik data terbaru...</p>
+                            <p class="text-gray-500 font-medium">Menarik rekod Google Sheets SA Slot ${saId}...</p>
                         </div>
                     </td>
                 </tr>
             `;
 
             try {
-                // Fetch data format CSV
-                const response = await fetch(CSV_URL, { cache: "no-store" });
-                
-                if (!response.ok) throw new Error("Gagal akses data dari Google Sheets");
-                
-                const csvText = await response.text();
-                const dataArray = parseCSV(csvText);
+                // --- FETCH DATA MELALUI APPS SCRIPT (action: getLeads) ---
+                const url = `${APP_SCRIPT_URL}?action=getLeads&saId=${saId}&limit=${limit}&t=${new Date().getTime()}`;
+                const response = await fetch(url, { cache: "no-store" });
 
-                if (dataArray.length <= 1) {
-                    tbody.innerHTML = `<tr><td colspan="10" class="py-8 text-center text-gray-500">Tiada data dijumpai di dalam rekod.</td></tr>`;
+                if (!response.ok) throw new Error("Gagal menghubungi Apps Script.");
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.error || "Ralat tidak diketahui dari Apps Script.");
+                }
+
+                let headers = result.data.headers || ['Tarikh', 'Nama', 'Nama Penuh', 'No Telefon', 'Model', 'Varian', 'Harga OTR', 'Deposit', 'Pinjaman', 'Tempoh', 'Faedah', 'Anggaran Bulanan'];
+                let rows = result.data.rows || [];
+                const totalRowsOrig = result.data.total || 0;
+
+                // Kemaskini Header Jadual
+                if (headers && headers.length > 0) {
+                    let headerHTML = `<th class="py-4 px-6 font-semibold whitespace-nowrap w-16 text-center">#</th>`;
+                    headers.forEach(head => {
+                        headerHTML += `<th class="py-4 px-6 font-semibold whitespace-nowrap">${String(head).trim()}</th>`;
+                    });
+                    thead.innerHTML = headerHTML;
+                }
+
+                if (!rows || rows.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="${headers ? headers.length + 1 : 10}" class="py-8 text-center text-gray-500">Tiada data dijumpai di dalam rekod Slot ${saId}.</td></tr>`;
                     totalText.textContent = "0";
+                    if (todayText) todayText.textContent = "0";
                     return;
                 }
 
-                // Baris pertama adalah Header
-                const headers = dataArray[0];
-                const rows = dataArray.slice(1);
-
-                // Kemaskini Header Jadual
-                let headerHTML = `<th class="py-4 px-6 font-semibold whitespace-nowrap w-16 text-center">#</th>`;
-                headers.forEach(head => {
-                    headerHTML += `<th class="py-4 px-6 font-semibold whitespace-nowrap">${head.trim()}</th>`;
-                });
-                thead.innerHTML = headerHTML;
-
-                // Dapatkan tarikh hari ini
+                // Dapatkan tarikh hari ini (untuk kira leads hari ini)
                 const currentDate = new Date();
                 const currentYear = currentDate.getFullYear();
                 const currentMonth = currentDate.getMonth();
                 const currentDay = currentDate.getDate();
                 let todayLeadsCount = 0;
 
-                // Kemaskini Isi Jadual (Terbalikkan data supaya yang paling baru di atas)
-                rows.reverse();
                 let bodyHTML = "";
-                let count = rows.length;
-                
-                rows.forEach((row, index) => {
+                console.log("Memuatkan jadual baru untuk SA", saId);
+
+                // Rows sudah disusun (terbaru di atas) oleh Apps Script
+                const limitedRows = rows;
+
+                let cardsHTML = "";
+
+                limitedRows.forEach((row, index) => {
                     // Semak jika baris kosong sepenuhnya
                     if (row.join('').trim() === '') return;
 
                     // Semak dan kira jumlah leads untuk hari ini
                     try {
-                        const rowDateStr = row[0].replace(/['"]/g, '').trim();
-                        const rowDate = new Date(rowDateStr);
-                        if (!isNaN(rowDate.getTime())) {
-                            if (rowDate.getFullYear() === currentYear && 
-                                rowDate.getMonth() === currentMonth && 
-                                rowDate.getDate() === currentDay) {
+                        if (row[0]) {
+                            const rowDateStr = String(row[0]).replace(/['"]/g, '').trim();
+                            const dayStr = String(currentDay).padStart(2, '0');
+                            const monthStr = String(currentMonth + 1).padStart(2, '0');
+                            const yearStr = currentYear;
+                            const todayStr1 = `${dayStr}/${monthStr}/${yearStr}`;
+                            const todayStr2 = `${monthStr}/${dayStr}/${yearStr}`;
+                            if (rowDateStr.includes(todayStr1) || rowDateStr.startsWith(todayStr1) || rowDateStr.includes(todayStr2) || rowDateStr.startsWith(todayStr2)) {
                                 todayLeadsCount++;
+                            } else {
+                                const rowDate = new Date(rowDateStr);
+                                if (!isNaN(rowDate.getTime())) {
+                                    if (rowDate.getFullYear() === currentYear && rowDate.getMonth() === currentMonth && rowDate.getDate() === currentDay) {
+                                        todayLeadsCount++;
+                                    }
+                                }
                             }
                         }
-                    } catch (e) {
-                        console.error("Ralat baca tarikh", e);
-                    }
+                    } catch (e) { console.error("Ralat baca tarikh", e); }
 
-                    bodyHTML += `<tr class="hover:bg-honda-light transition group">`;
-                    bodyHTML += `<td class="py-3 px-6 border-b border-gray-100 text-center text-gray-400 font-medium">${count - index}</td>`;
-                    
-                    row.forEach((col, colIndex) => {
-                        let text = col.trim();
-                        // Bersihkan simbol "'" (single quote) yang digunakan untuk paksa format teks di g-sheets
-                        if (text.startsWith("'")) text = text.substring(1);
+                    // Clean row data
+                    const cleanRow = row.map(c => { let t = String(c).trim(); return t.startsWith("'") ? t.substring(1) : t; });
 
-                        // Kemasan visual untuk column tertentu
-                        if (text.toLowerCase().includes('honda')) {
-                            bodyHTML += `<td class="py-3 px-6 border-b border-gray-100 font-semibold text-honda-dark">${text}</td>`;
+                    // --- Desktop Table Row ---
+                    const isEven = index % 2 === 0;
+                    bodyHTML += `<tr class="lead-row ${isEven ? 'bg-white' : 'bg-gray-50/30'}" style="animation: fadeIn 0.3s ease ${index * 0.03}s both">`;
+                    bodyHTML += `<td class="py-3 px-4 text-center"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-[10px] font-bold text-gray-500">${index + 1}</span></td>`;
+
+                    cleanRow.forEach((text, colIndex) => {
+                        const isModel = String(text).toLowerCase().includes('proton') || String(text).toLowerCase().includes('honda');
+                        const isPhone = colIndex === 3;
+                        const isMoney = colIndex >= 6 && colIndex <= 11;
+                        const isDate = colIndex === 0;
+
+                        if (isModel) {
+                            bodyHTML += `<td class="py-3 px-4"><span class="model-badge">${text}</span></td>`;
+                        } else if (isPhone) {
+                            bodyHTML += `<td class="py-3 px-4"><a href="tel:${text}" class="text-blue-600 hover:text-blue-800 font-medium transition"><span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>${text}</span></a></td>`;
+                        } else if (isMoney) {
+                            bodyHTML += `<td class="py-3 px-4 font-semibold text-gray-800 tabular-nums">${text}</td>`;
+                        } else if (isDate) {
+                            bodyHTML += `<td class="py-3 px-4 text-gray-500 text-xs font-medium">${text}</td>`;
                         } else {
-                            bodyHTML += `<td class="py-3 px-6 border-b border-gray-100">${text}</td>`;
+                            bodyHTML += `<td class="py-3 px-4 text-gray-700">${text}</td>`;
                         }
                     });
-
                     bodyHTML += `</tr>`;
+
+                    // --- Mobile Card ---
+                    const tarikh = cleanRow[0] || '-';
+                    const nama = cleanRow[1] || '-';
+                    const namaPenuh = cleanRow[2] || '-';
+                    const telefon = cleanRow[3] || '-';
+                    const model = cleanRow[4] || '-';
+                    const varian = cleanRow[5] || '-';
+                    const hargaOTR = cleanRow[6] || '-';
+                    const deposit = cleanRow[7] || '-';
+                    const pinjaman = cleanRow[8] || '-';
+                    const tempoh = cleanRow[9] || '-';
+                    const faedah = cleanRow[10] || '-';
+                    const bulanan = cleanRow[11] || '-';
+
+                    cardsHTML += `
+                        <div class="lead-card bg-white rounded-2xl border border-gray-100 p-4 shadow-sm" style="animation: fadeIn 0.4s ease ${index * 0.05}s both">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-9 h-9 bg-gradient-to-br from-honda-red to-red-600 rounded-xl flex items-center justify-center text-white text-xs font-bold shadow-md shadow-red-200">${index + 1}</div>
+                                    <div>
+                                        <p class="font-bold text-sm text-honda-dark leading-tight">${namaPenuh}</p>
+                                        <p class="text-[11px] text-gray-400 font-medium">${tarikh}</p>
+                                    </div>
+                                </div>
+                                <span class="model-badge">${model}</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-3 pt-3 border-t border-gray-100">
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Telefon</p>
+                                    <a href="tel:${telefon}" class="text-xs text-blue-600 font-semibold">${telefon}</a>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Varian</p>
+                                    <p class="text-xs text-gray-800 font-medium">${varian}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Harga OTR</p>
+                                    <p class="text-xs text-gray-800 font-bold">${hargaOTR}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Bulanan</p>
+                                    <p class="text-xs font-bold gradient-text">${bulanan}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Deposit</p>
+                                    <p class="text-xs text-gray-700 font-medium">${deposit}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Tempoh</p>
+                                    <p class="text-xs text-gray-700 font-medium">${tempoh} · ${faedah}</p>
+                                </div>
+                            </div>
+                        </div>`;
                 });
 
                 tbody.innerHTML = bodyHTML;
+
+                // Update mobile cards
+                const cardsContainer = document.getElementById('cards-container');
+                if (cardsContainer) cardsContainer.innerHTML = cardsHTML || '<div class="flex flex-col items-center justify-center py-12 gap-3 col-span-full"><p class="text-gray-400 font-medium text-sm">Tiada data.</p></div>';
+
                 lucide.createIcons();
 
+                // Update footer info
+                const footerInfo = document.getElementById('table-footer-info');
+                if (footerInfo) footerInfo.textContent = `Memaparkan ${limitedRows.length} daripada ${totalRowsOrig} rekod`;
+
                 // Kemaskini Statistik
-                totalText.textContent = rows.length;
-                if(todayText) todayText.textContent = todayLeadsCount;
-                
+                totalText.textContent = totalRowsOrig;
+                if (todayText) todayText.textContent = todayLeadsCount;
+
                 const now = new Date();
-                timeText.textContent = now.getHours().toString().padStart(2, '0') + ":" + 
-                                       now.getMinutes().toString().padStart(2, '0') + 
-                                       (now.getHours() >= 12 ? " PM" : " AM");
+                timeText.textContent = now.getHours().toString().padStart(2, '0') + ":" +
+                    now.getMinutes().toString().padStart(2, '0') +
+                    (now.getHours() >= 12 ? " PM" : " AM");
 
             } catch (error) {
                 console.error("Ralat memuat turun:", error);
@@ -544,8 +1795,9 @@
                         <td colspan="10" class="py-8 text-center text-red-500 bg-red-50">
                             <div class="flex flex-col items-center gap-2">
                                 <i data-lucide="alert-circle" class="w-8 h-8"></i>
-                                <span class="font-bold">Gagal memuat turun data.</span>
-                                <span class="text-xs">Sila pastikan link Google Sheets telah di 'Publish to Web'.</span>
+                                <span class="font-bold">Gagal memuat turun data rekod.</span>
+                                <span class="text-xs break-all px-4 mt-2 mb-2 text-red-400">${error.message}</span>
+                <span class="text-xs text-gray-500">Sila semak sambungan internet anda atau cuba sebentar lagi.</span>
                             </div>
                         </td>
                     </tr>
@@ -563,7 +1815,7 @@
 
             for (let i = 0; i < trs.length; i++) {
                 const tds = trs[i].getElementsByTagName("td");
-                
+
                 // Pastikan bukan baris 'loading' atau 'tiada data' (biasanya kurang 3 kolum)
                 if (tds.length < 3) continue;
 
@@ -573,7 +1825,7 @@
                 if (tdNama || tdPhone) {
                     const txtNama = tdNama.textContent || tdNama.innerText;
                     const txtPhone = tdPhone.textContent || tdPhone.innerText;
-                    
+
                     // Semak jika kata kunci carian ada dalam Nama ATAU No Telefon
                     if (txtNama.toLowerCase().indexOf(filter) > -1 || txtPhone.toLowerCase().indexOf(filter) > -1) {
                         trs[i].style.display = "";
@@ -583,6 +1835,35 @@
                 }
             }
         }
+
+        // --- INIT SESI (SUPAYA TAK LOGOUT BILA REFRESH) ---
+        function checkSessionOnLoad() {
+            const loginTime = localStorage.getItem("adminSessionTime");
+            if (loginTime) {
+                const timePassed = Date.now() - parseInt(loginTime);
+                if (timePassed < SESSION_TIMEOUT_MS) {
+                    // Sesi masih aktif
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('dashboard-screen').classList.remove('hidden');
+                    startSessionTimer();
+
+                    // Pulihkan slot SA dan tab utama
+                    activeSATab = parseInt(localStorage.getItem('adminActiveSATab') || '1');
+                    const savedTab = localStorage.getItem('adminActiveTab') || 'leads';
+                    switchTab(savedTab);
+
+                    if (savedTab === 'leads') {
+                        fetchSheetData();
+                    }
+                } else {
+                    logout();
+                }
+            }
+        }
+
+        // Jalankan semakan bila pautan dibuka
+        document.addEventListener('DOMContentLoaded', checkSessionOnLoad);
     </script>
 </body>
+
 </html>
