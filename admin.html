@@ -197,10 +197,15 @@
         /* Custom Select */
         .custom-select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 10px center;
-            padding-right: 30px;
+            background-position: right 14px center;
+            padding-right: 40px !important;
+        }
+
+        /* Select Hover for better UX */
+        .custom-select:hover {
+            border-color: #d1d5db;
         }
 
         /* Counter Animation */
@@ -225,7 +230,7 @@
             display: block;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .leads-cards-container {
                 display: grid;
             }
@@ -348,62 +353,57 @@
 
             <div id="view-leads" class="mt-6">
                 <!-- Kad Statistik Premium -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                     <!-- Total Leads -->
-                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                    <div class="bg-white rounded-[24px] p-6 border border-gray-100/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08)] transition duration-300 relative overflow-hidden fade-in"
                         style="animation-delay:0.05s">
-                        <div
-                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-honda-light to-transparent rounded-bl-full opacity-60">
-                        </div>
-                        <div class="flex items-center gap-3 mb-3">
+                        <div class="flex items-center gap-3 mb-4">
                             <div
-                                class="w-10 h-10 bg-gradient-to-br from-honda-red to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-200">
+                                class="w-11 h-11 bg-[#E4002B] rounded-[14px] flex items-center justify-center shrink-0">
                                 <i data-lucide="users" class="w-5 h-5 text-white"></i>
                             </div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Jumlah Leads</p>
+                            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest leading-tight">
+                                Jumlah Leads</p>
                         </div>
                         <h3 id="total-leads"
-                            class="text-3xl sm:text-4xl font-extrabold text-honda-dark count-up relative z-10">0</h3>
-                        <p class="text-xs text-gray-400 mt-1">Keseluruhan rekod slot ini</p>
+                            class="text-[40px] font-extrabold text-[#111827] leading-none mb-1 count-up">0</h3>
+                        <p class="text-[12px] text-gray-400 font-medium">Keseluruhan rekod slot ini</p>
                     </div>
 
                     <!-- Leads Hari Ini -->
-                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                    <div class="bg-white rounded-[24px] p-6 border border-gray-100/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08)] transition duration-300 relative overflow-hidden fade-in"
                         style="animation-delay:0.1s">
-                        <div
-                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-green-50 to-transparent rounded-bl-full opacity-60">
-                        </div>
-                        <div class="flex items-center gap-3 mb-3">
+                        <div class="flex items-center gap-3 mb-4">
                             <div
-                                class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-200">
+                                class="w-11 h-11 bg-[#10b981] rounded-[14px] flex items-center justify-center shrink-0">
                                 <i data-lucide="calendar-check" class="w-5 h-5 text-white"></i>
                             </div>
                             <div class="flex items-center gap-2">
-                                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Hari Ini</p>
-                                <div class="pulse-dot"></div>
+                                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest leading-tight">
+                                    Hari Ini</p>
+                                <div class="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.5)]">
+                                </div>
                             </div>
                         </div>
                         <h3 id="today-leads"
-                            class="text-3xl sm:text-4xl font-extrabold gradient-text count-up relative z-10">0</h3>
-                        <p class="text-xs text-gray-400 mt-1">Leads masuk hari ini</p>
+                            class="text-[40px] font-extrabold text-[#E4002B] leading-none mb-1 count-up">0</h3>
+                        <p class="text-[12px] text-gray-400 font-medium">Leads masuk hari ini</p>
                     </div>
 
                     <!-- Kemas Kini Terakhir -->
-                    <div class="stat-card bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100/80 shadow-sm relative overflow-hidden fade-in"
+                    <div class="bg-white rounded-[24px] p-6 border border-gray-100/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08)] transition duration-300 relative overflow-hidden fade-in"
                         style="animation-delay:0.15s">
-                        <div
-                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full opacity-60">
-                        </div>
-                        <div class="flex items-center gap-3 mb-3">
+                        <div class="flex items-center gap-3 mb-4">
                             <div
-                                class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                                class="w-11 h-11 bg-[#4f46e5] rounded-[14px] flex items-center justify-center shrink-0">
                                 <i data-lucide="clock" class="w-5 h-5 text-white"></i>
                             </div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Kemas Kini</p>
+                            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest leading-tight">Kemas
+                                Kini</p>
                         </div>
                         <h3 id="last-update"
-                            class="text-xl sm:text-2xl font-bold text-honda-dark mt-1 count-up relative z-10">-</h3>
-                        <p class="text-xs text-gray-400 mt-1">Waktu terakhir data ditarik</p>
+                            class="text-[28px] font-extrabold text-[#111827] leading-none mb-2 mt-4 count-up">-</h3>
+                        <p class="text-[12px] text-gray-400 font-medium mt-auto">Waktu terakhir data ditarik</p>
                     </div>
                 </div>
 
@@ -413,18 +413,21 @@
                     <!-- Header & Controls -->
                     <div class="p-4 sm:p-6 border-b border-gray-100">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-8 h-8 bg-honda-light rounded-lg flex items-center justify-center">
-                                    <i data-lucide="table-2" class="w-4 h-4 text-honda-red"></i>
+                            <div class="flex items-center gap-3.5">
+                                <div
+                                    class="w-11 h-11 bg-red-50 rounded-2xl flex items-center justify-center shrink-0 border border-red-100/50 shadow-sm">
+                                    <i data-lucide="layout" class="w-5 h-5 text-honda-red"></i>
                                 </div>
                                 <div>
-                                    <h2 class="text-base font-bold text-honda-dark">Senarai Prospek</h2>
-                                    <p class="text-[11px] text-gray-400 font-medium">Data terkini dari Google Sheets</p>
+                                    <h2 class="text-[18px] font-extrabold text-gray-900 leading-tight tracking-tight">
+                                        Senarai Prospek</h2>
+                                    <p class="text-[12px] text-gray-400 font-medium mt-0.5">Data terkini dari Google
+                                        Sheets</p>
                                 </div>
                             </div>
-                            <div class="flex flex-wrap w-full sm:w-auto gap-2 items-center">
+                            <div class="flex flex-wrap w-full sm:w-auto gap-3 items-center">
                                 <select id="sa-select" onchange="fetchSheetData()"
-                                    class="custom-select px-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-semibold text-gray-600 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all cursor-pointer">
+                                    class="custom-select pl-4 py-2.5 bg-white border border-gray-200 rounded-full text-[13px] font-semibold text-gray-700 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.1)] outline-none focus:border-honda-red focus:ring-4 focus:ring-honda-red/10 transition-all duration-300 cursor-pointer">
                                     <option value="1">🔴 Slot 1</option>
                                     <option value="2">🟠 Slot 2</option>
                                     <option value="3">🟡 Slot 3</option>
@@ -432,19 +435,19 @@
                                     <option value="5">🔵 Slot 5</option>
                                 </select>
                                 <select id="limit-select" onchange="fetchSheetData()"
-                                    class="custom-select px-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-semibold text-gray-600 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all cursor-pointer">
+                                    class="custom-select pl-4 py-2.5 bg-white border border-gray-200 rounded-full text-[13px] font-semibold text-gray-700 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.1)] outline-none focus:border-honda-red focus:ring-4 focus:ring-honda-red/10 transition-all duration-300 cursor-pointer">
                                     <option value="10">10 Baris</option>
                                     <option value="20">20 Baris</option>
                                     <option value="30">30 Baris</option>
                                     <option value="40">40 Baris</option>
                                     <option value="50">50 Baris</option>
                                 </select>
-                                <div class="relative w-full sm:w-44">
+                                <div class="relative w-full sm:w-56 ml-auto sm:ml-2">
                                     <i data-lucide="search"
-                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400"></i>
+                                        class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
                                     <input type="text" id="searchInput" onkeyup="filterTable()"
                                         placeholder="Cari prospek..."
-                                        class="w-full pl-8 pr-3 py-2 bg-gray-50/80 border border-gray-200/80 rounded-xl text-xs font-medium text-gray-700 outline-none focus:border-honda-red focus:ring-2 focus:ring-honda-red/10 transition-all placeholder:text-gray-400">
+                                        class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-[13px] font-semibold text-gray-700 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-4px_rgba(0,0,0,0.1)] outline-none focus:border-honda-red focus:ring-4 focus:ring-honda-red/10 transition-all duration-300 placeholder:text-gray-400 placeholder:font-medium">
                                 </div>
                             </div>
                         </div>
@@ -455,9 +458,9 @@
                         <table class="w-full text-left border-collapse min-w-[900px]">
                             <thead>
                                 <tr id="table-head"
-                                    class="bg-gradient-to-r from-gray-50 to-gray-50/50 text-[11px] text-gray-500 uppercase tracking-wider">
-                                    <th class="py-3.5 px-4 font-semibold whitespace-nowrap text-center w-12">#</th>
-                                    <th class="py-3.5 px-4 font-semibold whitespace-nowrap">Memuat turun...</th>
+                                    class="bg-white border-b border-gray-100 text-[10px] font-extrabold text-gray-400 uppercase tracking-widest">
+                                    <th class="py-5 px-6 whitespace-nowrap text-center w-16">#</th>
+                                    <th class="py-5 px-6 whitespace-nowrap">Memuat turun...</th>
                                 </tr>
                             </thead>
                             <tbody id="table-body" class="text-sm text-gray-700">
@@ -475,8 +478,9 @@
                     </div>
 
                     <!-- Mobile Card View -->
-                    <div id="cards-container" class="leads-cards-container grid-cols-1 gap-3 p-4">
-                        <div class="flex flex-col items-center justify-center py-12 gap-3">
+                    <div id="cards-container"
+                        class="leads-cards-container grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 p-4 lg:p-6">
+                        <div class="flex flex-col items-center justify-center py-12 gap-3 md:col-span-2 xl:col-span-3">
                             <div class="spinner"></div>
                             <p class="text-gray-400 font-medium text-sm">Menarik data...</p>
                         </div>
@@ -759,9 +763,9 @@
             // Nota: URL gambar disimpan sebagai lh3.googleusercontent.com/d/ — guna terus tanpa convert
 
             html += `
-                <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 sm:p-10 mb-8 transition duration-300 hover:shadow-lg relative animate-fade-in-up">
+                <div class="bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-sm border border-gray-100 p-4 sm:p-10 mb-8 transition duration-300 hover:shadow-lg relative animate-fade-in-up">
                     <!-- Status Badge -->
-                    <div class="absolute top-6 right-6 flex items-center gap-2">
+                    <div class="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2">
                          <span class="text-xs font-bold text-gray-400">Slot ${sa.id}</span>
                          <span class="px-3 py-1 rounded-full text-xs font-bold ${sa.status === 'Aktif' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
                             ${sa.status}
@@ -785,8 +789,8 @@
 
                     <div class="space-y-8">
                         <!-- Seksyen 1: Asas & Header -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                                 <i data-lucide="layout-template" class="w-5 h-5 text-honda-red"></i> 
                                 Asas & Struktur Header
                             </h4>
@@ -838,8 +842,8 @@
                         </div>
 
                         <!-- Seksyen 2: Hero Section -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                                 <i data-lucide="megaphone" class="w-5 h-5 text-honda-red"></i> 
                                 Banner Promosi (Hero Section)
                             </h4>
@@ -871,8 +875,8 @@
                                     </div>
                                 </div>
                         <!-- Seksyen 3: Model Kenderaan & Kalkulator -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-6">
                                 <h4 class="font-bold text-gray-900 flex items-center gap-2">
                                     <i data-lucide="car-front" class="w-5 h-5 text-honda-red"></i> 
                                     Pilihan Model & Varian (Kalkulator)
@@ -884,8 +888,8 @@
 
                             <div class="space-y-6">
                                 ${(sa.models && sa.models.length > 0) ? sa.models.map((model, mIndex) => `
-                                    <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm relative group">
-                                        <button onclick="removeModel(${sa.id}, ${mIndex})" class="absolute -top-3 -right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Buang Model">
+                                    <div class="bg-white p-3 sm:p-5 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm relative group">
+                                        <button onclick="removeModel(${sa.id}, ${mIndex})" class="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-100 sm:opacity-0 group-hover:opacity-100 shadow-sm z-10" title="Buang Model">
                                             <i data-lucide="x" class="w-4 h-4"></i>
                                         </button>
                                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 mb-4">
@@ -919,7 +923,7 @@
                                         </div>
 
                                         <!-- Varian List -->
-                                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                                        <div class="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-100">
                                             <div class="flex justify-between items-center mb-3">
                                                 <h5 class="text-xs font-bold text-gray-700">Senarai Varian & Harga</h5>
                                                 <button onclick="addVariant(${sa.id}, ${mIndex})" class="text-[10px] text-honda-red font-bold hover:underline flex items-center gap-1">
@@ -962,8 +966,8 @@
                         </div>
 
                         <!-- Seksyen 4: Tentang Saya -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                                 <i data-lucide="user" class="w-5 h-5 text-honda-red"></i> 
                                 Tentang Saya & Maklumat Tambahan
                             </h4>
@@ -1017,8 +1021,8 @@
                                 </div>
                             </div>
                         <!-- Seksyen 5: Ulasan & Testimoni -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-6">
                                 <h4 class="font-bold text-gray-900 flex items-center gap-2">
                                     <i data-lucide="message-square" class="w-5 h-5 text-honda-red"></i> 
                                     Ulasan & Testimoni
@@ -1030,8 +1034,8 @@
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 ${(sa.testimonials && sa.testimonials.length > 0) ? sa.testimonials.map((testi, tIdx) => `
-                                    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm relative group">
-                                        <button onclick="removeTestimonial(${sa.id}, ${tIdx})" class="absolute -top-3 -right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Buang Testimoni">
+                                    <div class="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border border-gray-200 shadow-sm relative group">
+                                        <button onclick="removeTestimonial(${sa.id}, ${tIdx})" class="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-200 transition opacity-100 sm:opacity-0 group-hover:opacity-100 shadow-sm z-10" title="Buang Testimoni">
                                             <i data-lucide="x" class="w-4 h-4"></i>
                                         </button>
                                         <div class="flex gap-4">
@@ -1059,8 +1063,8 @@
                         </div>
 
                         <!-- Seksyen 6: Footer & Kenalan -->
-                        <div class="bg-gray-50/50 p-6 sm:p-8 rounded-[1.5rem] border border-gray-100/80">
-                            <h4 class="font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div class="bg-gray-50/50 p-4 sm:p-8 rounded-xl sm:rounded-[1.5rem] border border-gray-100/80">
+                            <h4 class="font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                                 <i data-lucide="sidebar-open" class="w-5 h-5 text-honda-red rotate-90"></i> 
                                 Footer Bawah & Pautan Kenalan
                             </h4>
@@ -1447,7 +1451,7 @@
         }
 
         var sessionInterval;
-        var SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 3 minit
+        var SESSION_TIMEOUT_MS = 60 * 60 * 1000; // 1 jam
 
         function startSessionTimer() {
             if (sessionInterval) clearInterval(sessionInterval);
@@ -1475,6 +1479,8 @@
             document.getElementById('login-screen').classList.remove('hidden');
 
             localStorage.removeItem("adminSessionTime");
+            localStorage.removeItem("adminActiveTab");
+            localStorage.removeItem("adminActiveSATab");
             if (sessionInterval) clearInterval(sessionInterval);
         }
 
@@ -1629,9 +1635,9 @@
 
                 // Kemaskini Header Jadual
                 if (headers && headers.length > 0) {
-                    let headerHTML = `<th class="py-4 px-6 font-semibold whitespace-nowrap w-16 text-center">#</th>`;
+                    let headerHTML = `<th class="py-5 px-6 font-extrabold whitespace-nowrap w-16 text-center">#</th>`;
                     headers.forEach(head => {
-                        headerHTML += `<th class="py-4 px-6 font-semibold whitespace-nowrap">${String(head).trim()}</th>`;
+                        headerHTML += `<th class="py-5 px-6 font-extrabold whitespace-nowrap">${String(head).trim()}</th>`;
                     });
                     thead.innerHTML = headerHTML;
                 }
@@ -1688,9 +1694,8 @@
                     const cleanRow = row.map(c => { let t = String(c).trim(); return t.startsWith("'") ? t.substring(1) : t; });
 
                     // --- Desktop Table Row ---
-                    const isEven = index % 2 === 0;
-                    bodyHTML += `<tr class="lead-row ${isEven ? 'bg-white' : 'bg-gray-50/30'}" style="animation: fadeIn 0.3s ease ${index * 0.03}s both">`;
-                    bodyHTML += `<td class="py-3 px-4 text-center"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-[10px] font-bold text-gray-500">${index + 1}</span></td>`;
+                    bodyHTML += `<tr class="lead-row bg-white border-b border-gray-50 hover:bg-gray-50/60 transition duration-300" style="animation: fadeIn 0.4s ease ${index * 0.04}s both">`;
+                    bodyHTML += `<td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-50 text-[11px] font-bold text-gray-500 shadow-sm border border-gray-100">${index + 1}</span></td>`;
 
                     cleanRow.forEach((text, colIndex) => {
                         const isModel = String(text).toLowerCase().includes('proton') || String(text).toLowerCase().includes('honda');
@@ -1699,15 +1704,22 @@
                         const isDate = colIndex === 0;
 
                         if (isModel) {
-                            bodyHTML += `<td class="py-3 px-4"><span class="model-badge">${text}</span></td>`;
+                            bodyHTML += `<td class="py-5 px-6"><span class="model-badge px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wide shadow-sm">${text}</span></td>`;
                         } else if (isPhone) {
-                            bodyHTML += `<td class="py-3 px-4"><a href="tel:${text}" class="text-blue-600 hover:text-blue-800 font-medium transition"><span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>${text}</span></a></td>`;
+                            bodyHTML += `<td class="py-5 px-6"><a href="tel:${text}" class="text-blue-500 hover:text-blue-700 font-semibold transition flex items-center gap-1.5 text-[13px]"><i data-lucide="phone" class="w-3.5 h-3.5"></i>${text}</a></td>`;
                         } else if (isMoney) {
-                            bodyHTML += `<td class="py-3 px-4 font-semibold text-gray-800 tabular-nums">${text}</td>`;
+                            bodyHTML += `<td class="py-5 px-6 font-bold text-gray-800 tabular-nums text-[13px]">${text}</td>`;
                         } else if (isDate) {
-                            bodyHTML += `<td class="py-3 px-4 text-gray-500 text-xs font-medium">${text}</td>`;
+                            // Split date and time for better modern layout
+                            const dateParts = text.split(' ');
+                            const dateOnly = dateParts[0] || text;
+                            const timeOnly = dateParts.length > 1 ? dateParts.slice(1).join(' ') : '';
+                            bodyHTML += `<td class="py-5 px-6"><div class="flex flex-col"><span class="text-gray-600 text-[13px] font-semibold">${dateOnly}</span><span class="text-[10px] text-gray-400 mt-0.5 font-medium">${timeOnly}</span></div></td>`;
                         } else {
-                            bodyHTML += `<td class="py-3 px-4 text-gray-700">${text}</td>`;
+                            // Column 5 is Varian usually, make it slightly lighter or just normal
+                            const isVarian = colIndex === 5;
+                            const classes = isVarian ? "text-gray-600 text-[13px] font-medium leading-snug" : "text-gray-800 text-[13px] font-semibold";
+                            bodyHTML += `<td class="py-5 px-6"><div class="${classes}">${text}</div></td>`;
                         }
                     });
                     bodyHTML += `</tr>`;
@@ -1727,16 +1739,16 @@
                     const bulanan = cleanRow[11] || '-';
 
                     cardsHTML += `
-                        <div class="lead-card bg-white rounded-2xl border border-gray-100 p-4 shadow-sm" style="animation: fadeIn 0.4s ease ${index * 0.05}s both">
-                            <div class="flex items-start justify-between mb-3">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-9 h-9 bg-gradient-to-br from-honda-red to-red-600 rounded-xl flex items-center justify-center text-white text-xs font-bold shadow-md shadow-red-200">${index + 1}</div>
+                        <div class="lead-card bg-white rounded-2xl border border-gray-100/80 p-5 shadow-sm hover:shadow-md transition duration-300" style="animation: fadeIn 0.4s ease ${index * 0.05}s both">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-gray-50 to-gray-100 rounded-full border border-gray-100 flex items-center justify-center text-gray-500 text-[11px] font-bold shadow-sm shrink-0">${index + 1}</div>
                                     <div>
-                                        <p class="font-bold text-sm text-honda-dark leading-tight">${namaPenuh}</p>
-                                        <p class="text-[11px] text-gray-400 font-medium">${tarikh}</p>
+                                        <p class="font-bold text-[14px] text-gray-800 leading-tight">${namaPenuh}</p>
+                                        <p class="text-[11px] text-gray-400 font-medium mt-0.5">${tarikh}</p>
                                     </div>
                                 </div>
-                                <span class="model-badge">${model}</span>
+                                <span class="model-badge px-3 py-1 text-[10px] shadow-sm">${model}</span>
                             </div>
                             <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-3 pt-3 border-t border-gray-100">
                                 <div>
